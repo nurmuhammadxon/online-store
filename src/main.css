@@ -1,0 +1,19 @@
+.swiper-button-prev:after,
+.swiper-button-next:after {
+    width: 40px !important;
+    height: 40px !important;
+    background-color: #e6e8ed;
+    align-items: center;
+    border: 1px solid rgba(54, 55, 64, .25);
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    opacity: .8;
+    position: absolute;
+    text-decoration: none;
+    transition: all .3s ease-in-out;
+    z-index: 1;
+    font-size: 24px !important;
+    color: black !important;
+}
