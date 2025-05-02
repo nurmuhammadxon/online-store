@@ -126,7 +126,7 @@ const AdminUpdate = () => {
                                     <td className="p-3 border text-center">
                                         <button
                                             onClick={() => openModal(user)}
-                                            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 rounded"
+                                            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 rounded cursor-pointer"
                                         >
                                             Tahrirlash
                                         </button>
@@ -198,7 +198,7 @@ const AdminUpdate = () => {
                                 onChange={handleInputChange}
                                 placeholder="Parol"
                                 required
-                                showPasswordToggle
+                                showPasswordToggle={isPassword}
                                 togglePasswordVisibility={() => setIsPassword(prev => !prev)}
                             />
                             <InputField
@@ -217,13 +217,13 @@ const AdminUpdate = () => {
                         <div className="flex justify-end gap-3 mt-6">
                             <button
                                 onClick={closeModal}
-                                className="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded"
+                                className="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded cursor-pointer"
                             >
                                 Bekor qilish
                             </button>
                             <button
                                 onClick={updateUser}
-                                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
+                                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded cursor-pointer"
                             >
                                 Saqlash
                             </button>

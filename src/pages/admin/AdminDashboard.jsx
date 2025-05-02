@@ -4,16 +4,12 @@ import { IoMenu } from "react-icons/io5";
 import { CiLogout } from "react-icons/ci";
 
 import AdminSubMenu from './AdminSubMenu';
-import { AdminMenu } from "../../util/Constants.js";
+import { AdminMenu } from "../../util/Constants";
 import { useAuth } from '../../hooks/useAuth.jsx';
 
 function AdminDashboard() {
     const [isWidth, setIsWidth] = useState(true);
-    const { handleLogout, checkTokenValidity } = useAuth();
-
-    useEffect(() => {
-        // checkTokenValidity();
-    }, [checkTokenValidity]);
+    const { handleLogout } = useAuth();
 
     return (
         <>

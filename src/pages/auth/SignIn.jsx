@@ -12,11 +12,11 @@ function SignIn() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        const isAuth = sessionStorage.getItem('auth')
+        const isAuth = sessionStorage.getItem('auth');
         if (isAuth) {
-            navigate('/')
+            navigate('/');
         }
-    }, [])
+    }, []);
 
     const handleOnChange = (e) => {
         const { name, value } = e.target
@@ -61,7 +61,7 @@ function SignIn() {
             }
 
         } catch (err) {
-            setError("Tizimda xatolik: " + err.message)
+            setError("Tizimda xatolik: ")
         } finally {
             setLoading(false)
             setValue({ userName: '', password: '' })

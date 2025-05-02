@@ -7,7 +7,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
 
 import { banners } from '../util/Constants';
 
@@ -28,7 +27,7 @@ function Banner() {
                 {banners.map((item, index) => (
                     <SwiperSlide
                         key={index}
-                        className='flex items-center justify-center'
+                        className="flex items-center justify-center"
                     >
                         <img
                             src={item.img}

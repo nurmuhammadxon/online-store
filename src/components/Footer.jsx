@@ -7,11 +7,11 @@ import { FaLocationDot } from "react-icons/fa6";
 
 function Footer() {
     return (
-        <footer className="bg-gray-800 text-white py-10">
-            <div className="container mx-auto px-6 md:px-12">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <footer className="py-10 text-white bg-gray-800 mt-2.5">
+            <div className="container px-6 mx-auto md:px-12">
+                <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
                     <div>
-                        <h3 className="text-2xl font-semibold mb-4">Aloqa</h3>
+                        <h3 className="mb-4 text-2xl font-semibold">Aloqa</h3>
                         <ul className="space-y-2">
                             <li className="flex items-center">
                                 <FaPhoneAlt className="mr-2 text-red-500" />
@@ -29,7 +29,7 @@ function Footer() {
                     </div>
 
                     <div>
-                        <h3 className="text-2xl font-semibold mb-4">Ijtimoiy tarmoqlar</h3>
+                        <h3 className="mb-4 text-2xl font-semibold">Ijtimoiy tarmoqlar</h3>
                         <div className="flex space-x-6">
                             <a href="#" target="_blank" rel="noopener noreferrer" className="text-2xl text-blue-600 hover:text-red-500">
                                 <FaFacebook />
@@ -44,7 +44,7 @@ function Footer() {
                     </div>
 
                     <div>
-                        <h3 className="text-2xl font-semibold mb-4">Foydali havolalar</h3>
+                        <h3 className="mb-4 text-2xl font-semibold">Foydali havolalar</h3>
                         <ul className="space-y-2">
                             <li>
                                 <Link to="/terms" className="hover:text-red-500">Shartlar</Link>
@@ -59,7 +59,7 @@ function Footer() {
                     </div>
                 </div>
 
-                <div className="border-t border-gray-700 mt-8 pt-4 text-center">
+                <div className="pt-4 mt-8 text-center border-t border-gray-700">
                     <p>&copy; {new Date().getFullYear()} Laptops Uz. Barcha huquqlar himoyalangan.</p>
                 </div>
             </div>

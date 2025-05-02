@@ -15,11 +15,7 @@ import { useAuth } from '../../hooks/useAuth.jsx';
 
 function SuperAdminDashboard() {
   const [isWidth, setIsWidth] = useState(true)
-  const { handleLogout, checkTokenValidity } = useAuth();
-
-  useEffect(() => {
-    // checkTokenValidity();
-  }, [checkTokenValidity]);
+  const { handleLogout } = useAuth();
 
   return (
     <div className='w-screen h-screen flex items-start'>

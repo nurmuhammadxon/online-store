@@ -36,15 +36,15 @@ function Header() {
 
   return (
     <>
-      <header className='sticky top-0 left-0 z-50 bg-white shadow-md w-full'>
+      <header className='sticky top-0 left-0 z-50 w-full bg-white shadow-md'>
         <div className='mx-auto flex items-center justify-between gap-5 px-2.5 lg:px-4 py-4 relative'>
           {/* Logo */}
           <div>
             <h1
-              className='text-2xl font-medium select-none cursor-pointer sm:text-3xl lg:text-5xl'
+              className='text-2xl font-medium cursor-pointer select-none sm:text-3xl lg:text-5xl'
               onClick={() => navigate('/')}
             >
-              Laptop Uz
+              ShopUz
             </h1>
           </div>
 
@@ -52,9 +52,9 @@ function Header() {
           {/* desktop */}
           <>
             {/* search */}
-            <div className='hidden md:block w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg'>
+            <div className='hidden w-full max-w-xs md:block sm:max-w-sm md:max-w-md lg:max-w-lg'>
               <form action="" className='w-full'>
-                <label className='flex items-center justify-between border rounded-full focus-within:shadow pl-2'>
+                <label className='flex items-center justify-between pl-2 border rounded-full focus-within:shadow'>
                   <input type="search" placeholder='Search' className='w-full outline-none pl-3.5' />
                   <span className='text-lg min-w-[50px] h-8 flex items-center justify-center rounded-r-full text-white bg-primary'>
                     <FaSearch />
@@ -63,11 +63,11 @@ function Header() {
               </form>
             </div>
             {/* User , Heart and Cart buttons */}
-            <div className='hidden md:flex items-center gap-4'>
+            <div className='items-center hidden gap-4 md:flex'>
 
               {/* shopping cart */}
-              <button className='text-2xl sm:text-3xl group relative cursor-pointer' aria-label="Shopping Cart"
-                onClick={() => navigate('/cart')}
+              <button className='relative text-2xl cursor-pointer sm:text-3xl group' aria-label="Shopping Cart"
+                onClick={() => navigate('/user-about/cart-item')}
               >
                 <IoCartOutline />
                 {
@@ -80,7 +80,7 @@ function Header() {
               </button>
 
               {/* Heart */}
-              <button className='text-xl sm:text-3xl cursor-pointer'
+              <button className='text-xl cursor-pointer sm:text-3xl'
                 aria-label="Heart Cart"
                 onClick={() => navigate('/wishes')}
               >
@@ -89,7 +89,7 @@ function Header() {
 
               {/* user */}
               <button
-                className='text-2xl sm:text-3xl cursor-pointer'
+                className='text-2xl cursor-pointer sm:text-3xl'
                 aria-label="User Profile"
                 onClick={handleUserClick}
               >
@@ -139,7 +139,7 @@ function Header() {
                   <IoCartOutline className='text-4xl' />
 
                   {cartCount > 0 && (
-                    <div className='hidden group-hover:flex items-center justify-center absolute -top-4 right-6 size-5 text-center p-1 bg-strongBlue text-white rounded-full'>
+                    <div className='absolute items-center justify-center hidden p-1 text-center text-white rounded-full group-hover:flex -top-4 right-6 size-5 bg-strongBlue'>
                       <p className='text-xs'>{cartCount}</p>
                     </div>
                   )}

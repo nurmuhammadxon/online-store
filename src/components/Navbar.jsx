@@ -1,15 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MdLaptop, MdSportsEsports, MdBusinessCenter, MdDevices } from 'react-icons/md';
-import { FaApple } from "react-icons/fa";
 
-const categories = [
-    { name: 'Barchasi', icon: <MdDevices />, path: '/' },
-    { name: 'Gaming', icon: <MdSportsEsports />, path: '/products/gaming' },
-    { name: 'Business', icon: <MdBusinessCenter />, path: '/products/business' },
-    { name: 'Apple', icon: <FaApple />, path: '/products/apple' },
-    { name: 'Ultrabook', icon: <MdLaptop />, path: '/products/ultrabook' },
-];
+import { categories } from '../util/Constants';
 
 function Navbar() {
     return (

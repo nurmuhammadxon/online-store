@@ -1,19 +1,63 @@
-.swiper-button-prev:after,
-.swiper-button-next:after {
+.swiper-button-prev,
+.swiper-button-next {
     width: 40px !important;
     height: 40px !important;
     background-color: #e6e8ed;
     align-items: center;
-    border: 1px solid rgba(54, 55, 64, .25);
-    border-radius: 20px;
+    border: 1px solid rgba(54, 55, 64, 0.25);
+    border-radius: 50%;
     cursor: pointer;
     display: flex;
     justify-content: center;
-    opacity: .8;
-    position: absolute;
-    text-decoration: none;
-    transition: all .3s ease-in-out;
-    z-index: 1;
-    font-size: 24px !important;
-    color: black !important;
+    opacity: 0.8;
+    transition: all 0.3s ease-in-out;
+    z-index: 10;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+    font-size: 18px !important;
+    color: black;
+}
+
+@media (min-width: 1024px) {
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        width: 48px !important;
+        height: 48px !important;
+    }
+
+    .swiper-button-prev::after,
+    .swiper-button-next::after {
+        font-size: 20px !important;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        width: 36px !important;
+        height: 36px !important;
+    }
+
+    .swiper-button-prev::after,
+    .swiper-button-next::after {
+        font-size: 16px !important;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        width: 30px !important;
+        height: 30px !important;
+    }
+
+    .swiper-button-prev::after,
+    .swiper-button-next::after {
+        font-size: 8px !important;
+    }
 }

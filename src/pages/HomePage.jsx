@@ -1,14 +1,14 @@
 import React from 'react'
 
 // components
-import { Banner, Categories, ProductsBox } from '../components/index'
+import { Banner, Categories, ProductsAll } from '../components/index'
 
 
 function HomePage() {
     return (
         <div>
             <Banner />
-            <ProductsBox />
+            <ProductsAll />
             <Categories />
         </div>
     )

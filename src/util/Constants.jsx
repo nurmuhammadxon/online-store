@@ -1,3 +1,31 @@
+// icons
+import { MdLaptop, MdSportsEsports, MdBusinessCenter, MdDevices } from 'react-icons/md';
+import { FaApple } from "react-icons/fa";
+
+// products
+import laptop1 from '../assets/laptop2.png'
+import laptop2 from '../assets/laptop2.png'
+import laptop3 from '../assets/laptop3.png'
+import laptop4 from '../assets/laptop4.png'
+import laptop5 from '../assets/laptop5.png'
+import laptop6 from '../assets/laptop6.png'
+
+import PC1 from '../assets/case5.png'
+import PC2 from '../assets/case6.png'
+import PC3 from '../assets/case7.png'
+import PC4 from '../assets/case8.png'
+import PC5 from '../assets/case9.png'
+import PC6 from '../assets/case10.png'
+import PC7 from '../assets/case11.png'
+import PC8 from '../assets/case12.png'
+
+import manitor1 from '../assets/manitor1.png'
+import manitor2 from '../assets/manitor2.png'
+
+// banners
+import banner1 from '../assets/banner_image_1.png'
+import banner2 from '../assets/banner_image_2.png'
+
 export const SuperAdminMenu = [
     {
         id: 10,
@@ -11,7 +39,7 @@ export const SuperAdminMenu = [
             {
                 id: 1002,
                 title: "Mahsulot qo'shish",
-                link: '#'
+                link: '/admin/super-admin/produtc-add'
             },
             {
                 id: 1003,
@@ -203,31 +231,42 @@ export const AdminMenu = [
     }
 ];
 
-// products
-import laptop1 from '../assets/laptop2.png'
-import laptop2 from '../assets/laptop2.png'
-import laptop3 from '../assets/laptop3.png'
-import laptop4 from '../assets/laptop4.png'
-import laptop5 from '../assets/laptop5.png'
-import laptop6 from '../assets/laptop6.png'
+export const usernav = [
+    {
+        id: 1,
+        title: 'Savat',
+        link: '/user-about/cart-item',
+        key: 'cartItem'
+    },
+    {
+        id: 2,
+        title: "Buyurtmalarim",
+        link: '/user-about/orders',
+        key: 'orders',
+    },
+    {
+        id: 3,
+        title: "Ma'lumotlarim",
+        link: '/user-about/settings',
+        key: 'settings',
+    },
+];
 
-import PC1 from '../assets/case5.png'
-import PC2 from '../assets/case6.png'
-import PC3 from '../assets/case7.png'
-import PC4 from '../assets/case8.png'
-import PC5 from '../assets/case9.png'
-import PC6 from '../assets/case10.png'
-import PC7 from '../assets/case11.png'
-import PC8 from '../assets/case12.png'
+export const categories = [
+    { name: 'Barchasi', icon: <MdDevices />, path: '/' },
+    { name: 'Gaming', icon: <MdSportsEsports />, path: '/category/gaming' },
+    { name: 'Business', icon: <MdBusinessCenter />, path: '/category/business' },
+    { name: 'Apple', icon: <FaApple />, path: '/category/apple' },
+    { name: 'Ultrabook', icon: <MdLaptop />, path: '/category/' },
+];
 
-import manitor1 from '../assets/manitor1.png'
-import manitor2 from '../assets/manitor2.png'
 
 export const Products = [
     {
         id: 1,
         image: laptop1,
         type: 'Laptop',
+        filter: 'celebrities',
         name: 'MSI MPG Trident 3',
         title: 'EX DISPLAY : MSI Pro 16 Flex-036AU 15.6 MULTITOUCH All-In-On Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas molestias eos repudiandae alias autem suscipit rerum repellat tempora maiores eveniet.',
         aboutProduct: 'MSI MPG Trident 3 10SC-005AU Intel i7 10700F, 2060 SUPER, 16GB RAM, 512GB SSD, 2TB HDD, Windows 10 Home, Gaming Keyboard and Mouse 3 Years Warranty Gaming Desktop',
@@ -259,6 +298,7 @@ export const Products = [
         id: 2,
         image: laptop2,
         type: 'MSI Laptop',
+        filter: 'celebrities',
         name: 'MSI MPG Trident 3',
         title: 'EX DISPLAY : MSI Pro 16 Flex-036AU 15.6 MULTITOUCH All-In-On Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas molestias eos repudiandae alias autem suscipit rerum repellat tempora maiores eveniet.',
         aboutProduct: 'MSI MPG Trident 3 10SC-005AU Intel i7 10700F, 2060 SUPER, 16GB RAM, 512GB SSD, 2TB HDD, Windows 10 Home, Gaming Keyboard and Mouse 3 Years Warranty Gaming Desktop',
@@ -290,6 +330,7 @@ export const Products = [
         id: 3,
         image: laptop3,
         type: 'MSI Laptop',
+        filter: 'celebrities',
         name: 'MSI MPG Trident 3',
         title: 'EX DISPLAY : MSI Pro 16 Flex-036AU 15.6 MULTITOUCH All-In-On Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas molestias eos repudiandae alias autem suscipit rerum repellat tempora maiores eveniet.',
         aboutProduct: 'MSI MPG Trident 3 10SC-005AU Intel i7 10700F, 2060 SUPER, 16GB RAM, 512GB SSD, 2TB HDD, Windows 10 Home, Gaming Keyboard and Mouse 3 Years Warranty Gaming Desktop',
@@ -321,6 +362,7 @@ export const Products = [
         id: 4,
         image: laptop4,
         type: 'MSI Laptop',
+        filter: 'celebrities',
         name: 'MSI MPG Trident 3',
         title: 'EX DISPLAY : MSI Pro 16 Flex-036AU 15.6 MULTITOUCH All-In-On Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas molestias eos repudiandae alias autem suscipit rerum repellat tempora maiores eveniet.',
         aboutProduct: 'MSI MPG Trident 3 10SC-005AU Intel i7 10700F, 2060 SUPER, 16GB RAM, 512GB SSD, 2TB HDD, Windows 10 Home, Gaming Keyboard and Mouse 3 Years Warranty Gaming Desktop',
@@ -352,6 +394,7 @@ export const Products = [
         id: 5,
         image: laptop5,
         type: 'MSI Laptop',
+        filter: 'celebrities',
         name: 'MSI MPG Trident 3',
         title: 'EX DISPLAY : MSI Pro 16 Flex-036AU 15.6 MULTITOUCH All-In-On Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas molestias eos repudiandae alias autem suscipit rerum repellat tempora maiores eveniet.',
         aboutProduct: 'MSI MPG Trident 3 10SC-005AU Intel i7 10700F, 2060 SUPER, 16GB RAM, 512GB SSD, 2TB HDD, Windows 10 Home, Gaming Keyboard and Mouse 3 Years Warranty Gaming Desktop',
@@ -383,6 +426,7 @@ export const Products = [
         id: 6,
         image: laptop6,
         type: 'MSI Laptop',
+        filter: 'celebrities',
         name: 'MSI MPG Trident 3',
         title: 'EX DISPLAY : MSI Pro 16 Flex-036AU 15.6 MULTITOUCH All-In-On Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas molestias eos repudiandae alias autem suscipit rerum repellat tempora maiores eveniet.',
         aboutProduct: 'MSI MPG Trident 3 10SC-005AU Intel i7 10700F, 2060 SUPER, 16GB RAM, 512GB SSD, 2TB HDD, Windows 10 Home, Gaming Keyboard and Mouse 3 Years Warranty Gaming Desktop',
@@ -414,6 +458,7 @@ export const Products = [
         id: 7,
         image: PC1,
         type: 'Custom Case',
+        filter: 'celebrities',
         name: 'MSI MPG Trident 3',
         title: 'EX DISPLAY : MSI Pro 16 Flex-036AU 15.6 MULTITOUCH All-In-On Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas molestias eos repudiandae alias autem suscipit rerum repellat tempora maiores eveniet.',
         aboutProduct: 'MSI MPG Trident 3 10SC-005AU Intel i7 10700F, 2060 SUPER, 16GB RAM, 512GB SSD, 2TB HDD, Windows 10 Home, Gaming Keyboard and Mouse 3 Years Warranty Gaming Desktop',
@@ -445,6 +490,7 @@ export const Products = [
         id: 8,
         image: PC2,
         type: 'Custom Case',
+        filter: 'celebrities',
         name: 'MSI MPG Trident 3',
         title: 'EX DISPLAY : MSI Pro 16 Flex-036AU 15.6 MULTITOUCH All-In-On Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas molestias eos repudiandae alias autem suscipit rerum repellat tempora maiores eveniet.',
         aboutProduct: 'MSI MPG Trident 3 10SC-005AU Intel i7 10700F, 2060 SUPER, 16GB RAM, 512GB SSD, 2TB HDD, Windows 10 Home, Gaming Keyboard and Mouse 3 Years Warranty Gaming Desktop',
@@ -476,6 +522,7 @@ export const Products = [
         id: 9,
         image: PC3,
         type: 'Custom Case',
+        filter: 'celebrities',
         name: 'MSI MPG Trident 3',
         title: 'EX DISPLAY : MSI Pro 16 Flex-036AU 15.6 MULTITOUCH All-In-On Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas molestias eos repudiandae alias autem suscipit rerum repellat tempora maiores eveniet.',
         aboutProduct: 'MSI MPG Trident 3 10SC-005AU Intel i7 10700F, 2060 SUPER, 16GB RAM, 512GB SSD, 2TB HDD, Windows 10 Home, Gaming Keyboard and Mouse 3 Years Warranty Gaming Desktop',
@@ -507,6 +554,7 @@ export const Products = [
         id: 10,
         image: PC4,
         type: 'Custom Case',
+        filter: 'celebrities',
         name: 'MSI MPG Trident 3',
         title: 'EX DISPLAY : MSI Pro 16 Flex-036AU 15.6 MULTITOUCH All-In-On Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas molestias eos repudiandae alias autem suscipit rerum repellat tempora maiores eveniet.',
         aboutProduct: 'MSI MPG Trident 3 10SC-005AU Intel i7 10700F, 2060 SUPER, 16GB RAM, 512GB SSD, 2TB HDD, Windows 10 Home, Gaming Keyboard and Mouse 3 Years Warranty Gaming Desktop',
@@ -538,6 +586,7 @@ export const Products = [
         id: 11,
         image: PC5,
         type: 'Custom Case',
+        filter: 'celebrities',
         name: 'MSI MPG Trident 3',
         title: 'EX DISPLAY : MSI Pro 16 Flex-036AU 15.6 MULTITOUCH All-In-On Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas molestias eos repudiandae alias autem suscipit rerum repellat tempora maiores eveniet.',
         aboutProduct: 'MSI MPG Trident 3 10SC-005AU Intel i7 10700F, 2060 SUPER, 16GB RAM, 512GB SSD, 2TB HDD, Windows 10 Home, Gaming Keyboard and Mouse 3 Years Warranty Gaming Desktop',
@@ -569,6 +618,7 @@ export const Products = [
         id: 12,
         image: PC6,
         type: 'Desktop Case',
+        filter: 'celebrities',
         name: 'MSI MPG Trident 3',
         title: 'EX DISPLAY : MSI Pro 16 Flex-036AU 15.6 MULTITOUCH All-In-On Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas molestias eos repudiandae alias autem suscipit rerum repellat tempora maiores eveniet.',
         aboutProduct: 'MSI MPG Trident 3 10SC-005AU Intel i7 10700F, 2060 SUPER, 16GB RAM, 512GB SSD, 2TB HDD, Windows 10 Home, Gaming Keyboard and Mouse 3 Years Warranty Gaming Desktop',
@@ -600,6 +650,7 @@ export const Products = [
         id: 13,
         image: PC7,
         type: 'Desktop Case',
+        filter: 'celebrities',
         name: 'MSI MPG Trident 3',
         title: 'EX DISPLAY : MSI Pro 16 Flex-036AU 15.6 MULTITOUCH All-In-On Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas molestias eos repudiandae alias autem suscipit rerum repellat tempora maiores eveniet.',
         aboutProduct: 'MSI MPG Trident 3 10SC-005AU Intel i7 10700F, 2060 SUPER, 16GB RAM, 512GB SSD, 2TB HDD, Windows 10 Home, Gaming Keyboard and Mouse 3 Years Warranty Gaming Desktop',
@@ -631,6 +682,7 @@ export const Products = [
         id: 14,
         image: PC8,
         type: 'Desktop Case',
+        filter: 'celebrities',
         name: 'MSI MPG Trident 3',
         title: 'EX DISPLAY : MSI Pro 16 Flex-036AU 15.6 MULTITOUCH All-In-On Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas molestias eos repudiandae alias autem suscipit rerum repellat tempora maiores eveniet.',
         aboutProduct: 'MSI MPG Trident 3 10SC-005AU Intel i7 10700F, 2060 SUPER, 16GB RAM, 512GB SSD, 2TB HDD, Windows 10 Home, Gaming Keyboard and Mouse 3 Years Warranty Gaming Desktop',
@@ -662,6 +714,7 @@ export const Products = [
         id: 15,
         image: PC8,
         type: 'Desktop Case',
+        filter: 'celebrities',
         name: 'MSI MPG Trident 3',
         title: 'EX DISPLAY : MSI Pro 16 Flex-036AU 15.6 MULTITOUCH All-In-On Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas molestias eos repudiandae alias autem suscipit rerum repellat tempora maiores eveniet.',
         aboutProduct: 'MSI MPG Trident 3 10SC-005AU Intel i7 10700F, 2060 SUPER, 16GB RAM, 512GB SSD, 2TB HDD, Windows 10 Home, Gaming Keyboard and Mouse 3 Years Warranty Gaming Desktop',
@@ -693,6 +746,7 @@ export const Products = [
         id: 16,
         image: PC8,
         type: 'Desktop Case',
+        filter: 'celebrities',
         name: 'MSI MPG Trident 3',
         title: 'EX DISPLAY : MSI Pro 16 Flex-036AU 15.6 MULTITOUCH All-In-On Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas molestias eos repudiandae alias autem suscipit rerum repellat tempora maiores eveniet.',
         aboutProduct: 'MSI MPG Trident 3 10SC-005AU Intel i7 10700F, 2060 SUPER, 16GB RAM, 512GB SSD, 2TB HDD, Windows 10 Home, Gaming Keyboard and Mouse 3 Years Warranty Gaming Desktop',
@@ -724,6 +778,7 @@ export const Products = [
         id: 17,
         image: PC8,
         type: 'Desktop Case',
+        filter: 'celebrities',
         name: 'MSI MPG Trident 3',
         title: 'EX DISPLAY : MSI Pro 16 Flex-036AU 15.6 MULTITOUCH All-In-On Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas molestias eos repudiandae alias autem suscipit rerum repellat tempora maiores eveniet.',
         aboutProduct: 'MSI MPG Trident 3 10SC-005AU Intel i7 10700F, 2060 SUPER, 16GB RAM, 512GB SSD, 2TB HDD, Windows 10 Home, Gaming Keyboard and Mouse 3 Years Warranty Gaming Desktop',
@@ -755,6 +810,7 @@ export const Products = [
         id: 18,
         image: laptop1,
         type: 'play station',
+        filter: 'celebrities',
         name: 'MSI MPG Trident 3',
         title: 'EX DISPLAY : MSI Pro 16 Flex-036AU 15.6 MULTITOUCH All-In-On Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas molestias eos repudiandae alias autem suscipit rerum repellat tempora maiores eveniet.',
         aboutProduct: 'MSI MPG Trident 3 10SC-005AU Intel i7 10700F, 2060 SUPER, 16GB RAM, 512GB SSD, 2TB HDD, Windows 10 Home, Gaming Keyboard and Mouse 3 Years Warranty Gaming Desktop',
@@ -786,6 +842,7 @@ export const Products = [
         id: 19,
         image: laptop2,
         type: 'play station',
+        filter: 'celebrities',
         name: 'MSI MPG Trident 3',
         title: 'EX DISPLAY : MSI Pro 16 Flex-036AU 15.6 MULTITOUCH All-In-On Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas molestias eos repudiandae alias autem suscipit rerum repellat tempora maiores eveniet.',
         aboutProduct: 'MSI MPG Trident 3 10SC-005AU Intel i7 10700F, 2060 SUPER, 16GB RAM, 512GB SSD, 2TB HDD, Windows 10 Home, Gaming Keyboard and Mouse 3 Years Warranty Gaming Desktop',
@@ -817,6 +874,7 @@ export const Products = [
         id: 20,
         image: manitor1,
         type: 'Manitor',
+        filter: 'celebrities',
         name: 'MSI MPG Trident 3',
         title: 'EX DISPLAY : MSI Pro 16 Flex-036AU 15.6 MULTITOUCH All-In-On Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas molestias eos repudiandae alias autem suscipit rerum repellat tempora maiores eveniet.',
         aboutProduct: 'MSI MPG Trident 3 10SC-005AU Intel i7 10700F, 2060 SUPER, 16GB RAM, 512GB SSD, 2TB HDD, Windows 10 Home, Gaming Keyboard and Mouse 3 Years Warranty Gaming Desktop',
@@ -848,6 +906,7 @@ export const Products = [
         id: 21,
         image: manitor1,
         type: 'Manitor',
+        filter: 'celebrities',
         name: 'MSI MPG Trident 3',
         title: 'EX DISPLAY : MSI Pro 16 Flex-036AU 15.6 MULTITOUCH All-In-On Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas molestias eos repudiandae alias autem suscipit rerum repellat tempora maiores eveniet.',
         aboutProduct: 'MSI MPG Trident 3 10SC-005AU Intel i7 10700F, 2060 SUPER, 16GB RAM, 512GB SSD, 2TB HDD, Windows 10 Home, Gaming Keyboard and Mouse 3 Years Warranty Gaming Desktop',
@@ -879,6 +938,7 @@ export const Products = [
         id: 22,
         image: manitor2,
         type: 'Manitor',
+        filter: 'celebrities',
         name: 'MSI MPG Trident 3',
         title: 'EX DISPLAY : MSI Pro 16 Flex-036AU 15.6 MULTITOUCH All-In-On Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas molestias eos repudiandae alias autem suscipit rerum repellat tempora maiores eveniet.',
         aboutProduct: 'MSI MPG Trident 3 10SC-005AU Intel i7 10700F, 2060 SUPER, 16GB RAM, 512GB SSD, 2TB HDD, Windows 10 Home, Gaming Keyboard and Mouse 3 Years Warranty Gaming Desktop',
@@ -910,6 +970,7 @@ export const Products = [
         id: 23,
         image: manitor2,
         type: 'Manitor',
+        filter: 'celebrities',
         name: 'MSI MPG Trident 3',
         title: 'EX DISPLAY : MSI Pro 16 Flex-036AU 15.6 MULTITOUCH All-In-On Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas molestias eos repudiandae alias autem suscipit rerum repellat tempora maiores eveniet.',
         aboutProduct: 'MSI MPG Trident 3 10SC-005AU Intel i7 10700F, 2060 SUPER, 16GB RAM, 512GB SSD, 2TB HDD, Windows 10 Home, Gaming Keyboard and Mouse 3 Years Warranty Gaming Desktop',
@@ -941,6 +1002,7 @@ export const Products = [
         id: 24,
         image: manitor2,
         type: 'Manitor',
+        filter: 'celebrities',
         name: 'MSI MPG Trident 3',
         title: 'EX DISPLAY : MSI Pro 16 Flex-036AU 15.6 MULTITOUCH All-In-On Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas molestias eos repudiandae alias autem suscipit rerum repellat tempora maiores eveniet.',
         aboutProduct: 'MSI MPG Trident 3 10SC-005AU Intel i7 10700F, 2060 SUPER, 16GB RAM, 512GB SSD, 2TB HDD, Windows 10 Home, Gaming Keyboard and Mouse 3 Years Warranty Gaming Desktop',
@@ -969,10 +1031,6 @@ export const Products = [
         ]
     },
 ]
-
-// banners
-import banner1 from '../assets/banner_image_1.png'
-import banner2 from '../assets/banner_image_2.png'
 
 export const banners = [
     {
