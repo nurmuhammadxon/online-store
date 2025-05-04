@@ -30,10 +30,26 @@ import UsersRemove from './pages/admin/usersfolder/UsersRemove';
 import UsersList from './pages/admin/usersfolder/UsersList';
 import UserUpdate from './pages/admin/usersfolder/UserUpdate';
 import CreateUser from './pages/admin/usersfolder/CreateUser';
+// brends
+import BrendList from './pages/brends/BrendList';
+import BrendAdd from './pages/brends/BrendAdd';
+import BrendUpdate from './pages/brends/BrendUpdate';
+import BrendRemove from './pages/brends/BrendRemove';
+// catalogs
+import CatalogList from './pages/catolog/CatalogList';
+import CatalogAdd from './pages/catolog/CatalogAdd';
+import CatalogUpdate from './pages/catolog/CatalogUpdate';
+import CatalogRemove from './pages/catolog/CatalogRemove';
+// categorys
+import CategoryList from './pages/category/CategoryList';
+import CategoryAdd from './pages/category/CategoryAdd';
+import CategoryUpdate from './pages/category/CategoryUpdate';
+import CategoryRemove from './pages/category/CategoryRemove';
 // user about
 import UserAbout from './pages/Users/UserAbout';
 import UserSetting from './pages/Users/UserSetting';
 import UserOrders from './pages/Users/UserOrders';
+import UserCartItems from './pages/Users/UserCartItems';
 // prdoucts
 import ProductsAdd from './pages/products/ProductsAdd';
 import ProductCategory from './pages/products/ProductCategory';
@@ -41,7 +57,6 @@ import ProductCategory from './pages/products/ProductCategory';
 // Routes
 import PublicRoute from './routes/PublicRoute';
 import PrivateRoute from './routes/PrivateRoute';
-import UserCartItems from './pages/Users/UserCartItems';
 
 function App() {
   const router = createBrowserRouter([
@@ -171,6 +186,59 @@ function App() {
                 {
                   path: 'produtc-add',
                   element: <ProductsAdd />
+                },
+
+                // brends
+                {
+                  path: 'brend-list',
+                  element: <BrendList />
+                },
+                {
+                  path: 'brend-add',
+                  element: <BrendAdd />
+                },
+                {
+                  path: 'brend-update',
+                  element: <BrendUpdate />
+                },
+                {
+                  path: 'brend-delete',
+                  element: <BrendRemove />
+                },
+                // categorys
+                {
+                  path: "category-list",
+                  element: <CategoryList />,
+                },
+                {
+                  path: 'category-add',
+                  element: <CategoryAdd />,
+                },
+                {
+                  path: 'category-update',
+                  element: <CategoryUpdate />
+                },
+                {
+                  path: 'category-delete',
+                  element: <CategoryRemove />
+                },
+
+                // catalog
+                {
+                  path: 'catalog-list',
+                  element: <CatalogList />
+                },
+                {
+                  path: 'catalog-add',
+                  element: <CatalogAdd />
+                },
+                {
+                  path: 'catalog-update',
+                  element: <CatalogUpdate />
+                },
+                {
+                  path: 'catalog-delete',
+                  element: <CatalogRemove />
                 }
               ]
             },
@@ -197,10 +265,6 @@ function App() {
                 }
               ]
             },
-            {
-              path: '*',
-              element: <div>Page not found</div>
-            }
           ]
         }
       ]

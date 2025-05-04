@@ -7,6 +7,8 @@ const AdminUpdate = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isPassword, setIsPassword] = useState(false);
+    const [isConfirmPassword, setIsConfirmPassword] = useState(false);
     const [value, setValue] = useState({
         userName: '',
         firstName: '',
@@ -17,8 +19,6 @@ const AdminUpdate = () => {
         confirmPassword: '',
         id: ''
     });
-    const [isPassword, setIsPassword] = useState(false);
-    const [isConfirmPassword, setIsConfirmPassword] = useState(false);
 
     const fetchUsers = async () => {
         setLoading(true);

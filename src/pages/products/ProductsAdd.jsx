@@ -1,16 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function ProductsAdd() {
     const [productName, setProductName] = useState('');
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
-    const [categoryId, setCategoryId] = useState(0);
-    const [brendId, setBrendId] = useState(0);
-    const [images, setImages] = useState([]);
+    const [categoryId, setCategoryId] = useState('');
+    const [brendId, setBrendId] = useState('');
+    const [images, setImages] = useState(['', '', '']);
+    const [isLoading, setIsLoading] = useState(false);
 
     const addImageInput = () => {
-        setImages([...images, '']);
+        if (images.length < 10) {
+            setImages([...images, '']);
+        } else {
+            alert('Maksimal rasm soniga erishdingiz (10 ta).');
+        }
     };
 
     const handleImageChange = (e, index) => {
@@ -21,6 +26,7 @@ function ProductsAdd() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
 
         const formData = new FormData();
         formData.append('productName', productName);
@@ -45,6 +51,14 @@ function ProductsAdd() {
         } catch (error) {
             console.error("Error:", error);
             alert("Mahsulotni qo'shishda xatolik yuz berdi.");
+        } finally {
+            setProductName('');
+            setPrice('');
+            setDescription('');
+            setCategoryId('');
+            setBrendId('');
+            setImages(['', '', '']);
+            setIsLoading(false);
         }
     };
 
@@ -124,18 +138,24 @@ function ProductsAdd() {
                             </button>
                         </div>
                     ))}
-                    <button
-                        type="button"
-                        onClick={addImageInput}
-                        className="mt-2 px-6 py-2 bg-green-600 text-white rounded-md cursor-pointer"
-                    >
-                        Yangi rasm qo'shish
-                    </button>
+                    {images.length < 10 && (
+                        <button
+                            type="button"
+                            onClick={addImageInput}
+                            className="mt-2 px-6 py-2 bg-green-600 text-white rounded-md cursor-pointer"
+                        >
+                            Yangi rasm qo'shish
+                        </button>
+                    )}
                 </div>
 
                 <div className="mt-6">
-                    <button type="submit" className="px-6 py-2 bg-blue-600 text-white rounded-md cursor-pointer">
-                        Mahsulotni qo'shish
+                    <button
+                        type="submit"
+                        className="px-6 py-2 bg-blue-600 text-white rounded-md cursor-pointer"
+                        disabled={isLoading}
+                    >
+                        {isLoading ? 'Yuklanmoqda...' : 'Mahsulotni qo\'shish'}
                     </button>
                 </div>
             </form>

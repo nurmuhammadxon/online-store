@@ -9,7 +9,7 @@ const AdminRemove = () => {
     const fetchUsers = async () => {
         setLoading(true);
         setError("");
-        
+
         try {
             const response = await axios.get("https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Users/GetAll");
             const users = response.data.data.users.filter(user => user.role === 0);
@@ -34,9 +34,9 @@ const AdminRemove = () => {
 
         try {
             await axios.delete(`https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Users/Delete/${id}`);
-            setUsers(prev => prev.filter(user => user.id !== id));
+            fetchUsers()
         } catch (err) {
-            setError("O'chirishda xatolik: " + err.message);
+            setError("O'chirishda xatolik: ");
         }
     };
 

@@ -28,6 +28,84 @@ import banner2 from '../assets/banner_image_2.png'
 
 export const SuperAdminMenu = [
     {
+        id: 8,
+        title: 'Brendlar',
+        subMenu: [
+            {
+                id: 801,
+                title: "Brendlar ro'yxati",
+                link: '/admin/super-admin/brend-list',
+            },
+            {
+                id: 802,
+                title: "Brend qo'shish",
+                link: '/admin/super-admin/brend-add',
+            },
+            {
+                id: 803,
+                title: 'Brendni tahrirlash',
+                link: '/admin/super-admin/brend-update',
+            },
+            {
+                id: 804,
+                title: "Brendni o'chirish",
+                link: '/admin/super-admin/brend-delete'
+            }
+        ]
+    },
+    {
+        id: 7,
+        title: 'Katalog',
+        subMenu: [
+            {
+                id: 701,
+                title: "Kataloglar ro'yxati",
+                link: '/admin/super-admin/catalog-list'
+            },
+            {
+                id: 702,
+                title: "Katalog qushish",
+                link: '/admin/super-admin/catalog-add'
+            },
+            {
+                id: 703,
+                title: 'Katalogni tahrirlash',
+                link: '/admin/super-admin/catalog-update'
+            },
+            {
+                id: 704,
+                title: "Katalogni o'chirish",
+                link: '/admin/super-admin/catalog-delete'
+            },
+        ]
+    },
+    {
+        id: 6,
+        title: "Kategoriya",
+        subMenu: [
+            {
+                id: 601,
+                title: "Kategoriyalar ro'yxati",
+                link: '/admin/super-admin/category-list'
+            },
+            {
+                id: 602,
+                title: "Kategoriya qushish",
+                link: '/admin/super-admin/category-add'
+            },
+            {
+                id: 603,
+                title: 'Kategoriyani tahrirlash',
+                link: '/admin/super-admin/category-update'
+            },
+            {
+                id: 604,
+                title: "Kategoriyani o'chirish",
+                link: '/admin/super-admin/category-delete'
+            },
+        ]
+    },
+    {
         id: 10,
         title: "Mahsulotlar",
         subMenu: [
@@ -131,27 +209,27 @@ export const SuperAdminMenu = [
             },
         ]
     },
-    {
-        id: 5,
-        title: "Sozlamalar",
-        subMenu: [
-            {
-                id: 501,
-                title: "Tizim sozlamalari",
-                link: '#'
-            },
-            {
-                id: 502,
-                title: "Xavfsizlik sozlamalari",
-                link: '#'
-            },
-            {
-                id: 503,
-                title: "To'lov tizimi sozlamalari",
-                link: '#'
-            }
-        ]
-    }
+    // {
+    //     id: 5,
+    //     title: "Sozlamalar",
+    //     subMenu: [
+    //         {
+    //             id: 501,
+    //             title: "Tizim sozlamalari",
+    //             link: '#'
+    //         },
+    //         {
+    //             id: 502,
+    //             title: "Xavfsizlik sozlamalari",
+    //             link: '#'
+    //         },
+    //         {
+    //             id: 503,
+    //             title: "To'lov tizimi sozlamalari",
+    //             link: '#'
+    //         }
+    //     ]
+    // }
 ];
 
 export const AdminMenu = [
