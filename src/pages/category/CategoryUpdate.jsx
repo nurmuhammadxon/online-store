@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { InputField } from '../../components';
+import { fetchData } from '../../util/fetchdata';
 
 function CategoryUpdate() {
     const [category, setCategory] = useState([]);
@@ -13,17 +14,15 @@ function CategoryUpdate() {
         id: 0
     });
 
-    const fetchCategories = async () => {
-        setLoading(true);
-        try {
-            const res = await axios.get('https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Categories/GetAll');
-            setCategory(res.data.data.categories);
-        } catch (error) {
-            setError('Xatolik yuz berdi');
-        } finally {
-            setLoading(false);
-        }
-    };
+    useEffect(() => {
+        fetchData(
+            'Categories/GetAll',
+            'categories',
+            setCategory,
+            setError,
+            setLoading
+        )
+    }, []);
 
     const openModal = (category) => {
         setFormData(category);
@@ -44,18 +43,14 @@ function CategoryUpdate() {
 
     const updateCategory = async () => {
         try {
-            const res = await axios.put(`https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Categories/Update/${formData.id}`, formData);
+            await axios.put(`https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Categories/Update/${formData.id}`, formData);
             fetchCategories()
             closeModal();
         } catch (error) {
             console.error('Yangilashda xatolik:', error);
-            alert("O'chirishda xatolik! Iltimos qayta urinib ko'ring");
+            alert("Yangilashda xatolik! Iltimos qayta urinib ko'ring");
         }
     };
-
-    useEffect(() => {
-        fetchCategories();
-    }, []);
 
     return (
         <div className="p-6 max-w-6xl mx-auto">
@@ -88,7 +83,7 @@ function CategoryUpdate() {
                                     <td className="p-3 border text-center">{idx + 1}</td>
                                     <td className="p-3 border">{cat.categoryName}</td>
                                     <td className="p-3 border">{cat.description}</td>
-                                    <td className="p-3 border text-center text-gray-500">{cat.catalogId}</td>
+                                    <td className="p-3 border text-center text-gray-500">{cat.id}</td>
                                     <td className="p-3 border text-center">
                                         <button
                                             onClick={() => openModal(cat)}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 // icons
 import { CiLogout } from 'react-icons/ci';
@@ -8,27 +8,15 @@ import { CiLogout } from 'react-icons/ci';
 import { usernav } from '../../util/Constants';
 
 // hooks
-import { useAuth } from '../../hooks/useAuth';
+import { useAuthTimeout } from '../../hooks/useAuthTimeout';
 
 function UserAbout() {
+    const pathname = useLocation().pathname.split('/')
+    const navbarItem = pathname[pathname.length - 1]
     const navigate = useNavigate();
-    const [navbar, setNavbar] = useState('cartItem');
-    const { handleLogout } = useAuth();
+    const [navbar, setNavbar] = useState(navbarItem);
 
-    useEffect(() => {
-        const isAuth = sessionStorage.getItem('auth')
-        if (isAuth) {
-            const logoutTimer = setTimeout(() => {
-                sessionStorage.removeItem('auth');
-                sessionStorage.removeItem('role');
-                sessionStorage.removeItem('user');
-                navigate('/signin');
-
-            }, 3600000);
-
-            return () => clearTimeout(logoutTimer);
-        }
-    }, [])
+    useAuthTimeout()
 
     const user = JSON.parse(sessionStorage.getItem('user'));
 
@@ -63,13 +51,6 @@ function UserAbout() {
                             {item.title}
                         </button>
                     ))}
-                    <button
-                        className='text-strongBlue hover:text-red-500 transition-colors duration-300 ease-in-out cursor-pointer font-medium text-xl flex items-center gap-1.5'
-                        onClick={handleLogout}
-                    >
-                        <CiLogout />
-                        <span>Chiqish</span>
-                    </button>
                 </div>
                 <div className="w-2/3 px-5">
                     <Outlet />

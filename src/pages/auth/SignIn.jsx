@@ -99,14 +99,14 @@ function SignIn() {
                             togglePasswordVisibility={() => setIsPassword(prev => !prev)}
                         />
 
-                        <label className='flex justify-end w-full pt-2'>
+                        {/* <label className='flex justify-end w-full pt-2'>
                             <Link
                                 to='/forgot-password'
                                 className='text-base text-primary hover:text-textColorSecound hover:underline transition-all duration-300 ease-in-out'
                             >
                                 Parolingizni unutdingizmi?
                             </Link>
-                        </label>
+                        </label> */}
 
                         {error && (
                             <div className='text-red-600 text-center mt-4'>{error}</div>

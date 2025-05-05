@@ -1,25 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { fetchData } from '../../util/fetchdata';
 
 function CatalogRemove() {
     const [catalogs, setCatalogs] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
-    const fetchCatalogs = async () => {
-        setLoading(true);
-        setError("");
-
-        try {
-            const response = await axios.get('https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Catalogs/GetAll');
-            setCatalogs(response.data.data.catalogs);
-        } catch (err) {
-            console.error('Katalog olishda xatolik:', err);
-            setError("Ma'lumotlarni yuklashda xatolik yuz berdi.");
-        } finally {
-            setLoading(false);
-        }
-    };
+    useEffect(() => {
+        fetchData(
+            'Catalogs/GetAll',
+            'catalogs',
+            setCatalogs,
+            setError,
+            setLoading
+        )
+    }, []);
 
     const deleteCatalog = async (id) => {
 
@@ -29,15 +25,10 @@ function CatalogRemove() {
         try {
             await axios.delete(`https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Catalogs/Delete/${id}`);
             alert("Katalog o'chirildi!");
-            fetchCatalogs()
         } catch (err) {
             setError("O'chirishda xatolik! Iltimos qayta urinib ko'ring");
         }
     };
-
-    useEffect(() => {
-        fetchCatalogs()
-    }, []);
 
     return (
         <div className="p-6 max-w-6xl mx-auto">

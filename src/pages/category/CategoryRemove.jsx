@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { fetchData } from '../../util/fetchdata';
 
 function CategoryRemove() {
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
-    const fetchCategories = async () => {
-        setLoading(true);
-        setError("");
-
-        try {
-            const response = await axios.get("https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Categories/GetAll");
-            setCategories(response.data.data.categories);
-        } catch (err) {
-            setError("Foydalanuvchilarni yuklashda xatolik: " + err.message);
-        } finally {
-            setLoading(false);
-        }
-    };
+    useEffect(() => {
+        fetchData(
+            'Categories/GetAll',
+            'categories',
+            setCategories,
+            setError,
+            setLoading
+        )
+    }, []);
 
     const deleteCategory = async (id) => {
 
@@ -28,15 +25,10 @@ function CategoryRemove() {
         try {
             await axios.delete(`https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Categories/Detele/${id}`);
             alert("Kategoriya o'chirildi!");
-            fetchCategories();
         } catch (err) {
             setError("O'chirishda xatolik! Iltimos qayta urinib ko'ring");
         }
     };
-
-    useEffect(() => {
-        fetchCategories();
-    }, []);
 
     return (
         <div className="p-6 max-w-6xl mx-auto">
@@ -69,7 +61,7 @@ function CategoryRemove() {
                                     <td className="p-3 border text-center">{idx + 1}</td>
                                     <td className="p-3 border">{category.categoryName}</td>
                                     <td className="p-3 border">{category.description}</td>
-                                    <td className="p-3 border text-center text-gray-500">{category.catalogId}</td>
+                                    <td className="p-3 border text-center text-gray-500">{category.id}</td>
                                     <td className="p-3 border text-center">
                                         <button
                                             onClick={() => deleteCategory(category.id)}

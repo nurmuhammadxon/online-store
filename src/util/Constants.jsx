@@ -112,22 +112,22 @@ export const SuperAdminMenu = [
             {
                 id: 1001,
                 title: "Mahsulotlar ro'yxatini ko'rish",
-                link: '#'
+                link: '/admin/super-admin/produtc-list'
             },
             {
                 id: 1002,
                 title: "Mahsulot qo'shish",
                 link: '/admin/super-admin/produtc-add'
             },
-            {
-                id: 1003,
-                title: "Mahsulotni tahrirlash",
-                link: '#'
-            },
+            // {
+            //     id: 1003,
+            //     title: "Mahsulotni tahrirlash",
+            //     link: '/admin/super-admin/produtc-update'
+            // },
             {
                 id: 1004,
                 title: "Mahsulotni o'chirish",
-                link: '#'
+                link: '/admin/super-admin/produtc-delete'
             }
         ]
     },

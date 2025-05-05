@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { fetchData } from '../../util/fetchdata';
 
 function CategoryList() {
     const [categories, setCategories] = useState([]);
@@ -7,19 +7,13 @@ function CategoryList() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchCategories = async () => {
-            try {
-                const response = await axios.get('https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Categories/GetAll');
-                setCategories(response.data.data.categories);
-            } catch (err) {
-                console.error('Kategoriya olishda xatolik:', err);
-                setError("Ma'lumotlarni yuklashda xatolik yuz berdi.");
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchCategories();
+        fetchData(
+            'Categories/GetAll',
+            'categories',
+            setCategories,
+            setError,
+            setLoading
+        )
     }, []);
 
     return (
@@ -54,7 +48,7 @@ function CategoryList() {
                                         <td className="p-2 border text-center">{idx + 1}</td>
                                         <td className="p-2 border">{category.categoryName}</td>
                                         <td className="p-2 border">{category.description}</td>
-                                        <td className="p-2 border text-center text-gray-500">{category.catalogId}</td>
+                                        <td className="p-2 border text-center text-gray-500">{category.id}</td>
                                     </tr>
                                 ))}
                             </tbody>

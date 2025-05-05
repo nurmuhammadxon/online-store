@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+
+// componetns 
 import { InputField } from '../../components';
+
+import { fetchData } from '../../util/fetchdata';
 
 function BrendUpdate() {
     const [brends, setBrends] = useState([]);
@@ -11,17 +15,15 @@ function BrendUpdate() {
         brendName: ''
     });
 
-    const fetchBrends = async () => {
-        try {
-            const response = await axios.get('https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Brends/GetAll');
-            setBrends(response.data.data.brands);
-        } catch(err) {
-            console.error('Brend olishda xatolik:', err);
-            setError("Ma'lumotlarni yuklashda xatolik yuz berdi.");
-        } finally {
-            setLoading(false);
-        }
-    };
+    useEffect(() => {
+        fetchData(
+            'Brends/GetAll',
+            'brands',
+            setBrends,
+            setError,
+            setLoading
+        )
+    }, []);
 
     const openModal = (brend) => {
         setFormData(brend);
@@ -43,17 +45,12 @@ function BrendUpdate() {
     const updatebrendalog = async (id) => {
         try {
             await axios.put(`https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Brends/Modify/${id}`, formData);
-            fetchBrends();
             closeModal();
         } catch (error) {
             console.error('Yangilashda xatolik:', error);
             alert("Yangilashda xatolik! Iltimos qayta urinib ko'ring");
         }
     };
-
-    useEffect(() => {
-        fetchBrends();
-    }, []);
 
     return (
         <div className="p-6 max-w-6xl mx-auto">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 function ProductsAdd() {
@@ -50,7 +50,7 @@ function ProductsAdd() {
             alert("Mahsulot muvaffaqiyatli qo'shildi!");
         } catch (error) {
             console.error("Error:", error);
-            alert("Mahsulotni qo'shishda xatolik yuz berdi.");
+            alert("Mahsulotni qo'shishda xatolik yuz berdi.", error);
         } finally {
             setProductName('');
             setPrice('');

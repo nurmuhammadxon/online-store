@@ -5,11 +5,16 @@ import { CiLogout } from "react-icons/ci";
 
 import AdminSubMenu from './AdminSubMenu';
 import { AdminMenu } from "../../util/Constants";
+
+// hooks
 import { useAuth } from '../../hooks/useAuth.jsx';
+import { useAuthTimeout } from '../../hooks/useAuthTimeout.jsx';
 
 function AdminDashboard() {
     const [isWidth, setIsWidth] = useState(true);
     const { handleLogout } = useAuth();
+
+    useAuthTimeout()
 
     return (
         <div className="w-screen h-screen flex overflow-hidden">

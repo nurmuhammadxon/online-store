@@ -53,6 +53,9 @@ import UserCartItems from './pages/Users/UserCartItems';
 // prdoucts
 import ProductsAdd from './pages/products/ProductsAdd';
 import ProductCategory from './pages/products/ProductCategory';
+import ProductList from './pages/products/ProductList';
+import ProductsRemove from './pages/products/ProductsRemove';
+import ProductsUpdate from './pages/products/ProductUpdate';
 
 // Routes
 import PublicRoute from './routes/PublicRoute';
@@ -184,8 +187,20 @@ function App() {
 
                 // products
                 {
+                  path: 'produtc-list',
+                  element: <ProductList />
+                },
+                {
                   path: 'produtc-add',
                   element: <ProductsAdd />
+                },
+                // {
+                //   path: 'produtc-update',
+                //   element: <ProductsUpdate />
+                // },
+                {
+                  path: 'produtc-delete',
+                  element: <ProductsRemove />
                 },
 
                 // brends

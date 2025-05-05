@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { FaUserPlus } from "react-icons/fa6";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { InputField } from '../../components';
 
 function SignUp() {
@@ -9,7 +9,6 @@ function SignUp() {
   const [isConfirmPassword, setIsConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
 
   const [value, setValue] = useState({
     userName: '',
@@ -46,39 +45,6 @@ function SignUp() {
         { headers: { 'Content-Type': 'application/json' } }
       )
 
-      console.log(insertRes);
-
-
-      // if (insertRes.status >= 200 && insertRes.status < 300) {
-      //   const userId = insertRes.data.id;
-
-      //   await axios.post(
-      //     'https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Users/AssignRole/assign-role',
-      //     {
-      //       userId: userId,
-      //       role: 1,
-      //     },
-      //     { headers: { 'Content-Type': 'application/json' } }
-      //   );
-
-      // const loginRes = await axios.post(
-      //   'https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Users/GetAll',
-      //   {
-      //     email: value.email,
-      //     password: value.password,
-      //   },
-      //   { headers: { 'Content-Type': 'application/json' } }
-      // );
-
-      // if (loginRes.status === 200) {
-      //   sessionStorage.setItem('token', loginRes.data.token);
-      //   navigate('/');
-      // } else {
-      //   setError('Login muvaffaqiyatsiz bo‘ldi');
-      // }
-      // } else {
-      //   setError(`Foydalanuvchi yaratishda xato: ${insertRes.statusText}`);
-      // }
     } catch (err) {
       console.error('Xatolik:', err.response?.data);
       setError('Xatolik yuz berdi: ' + (err.response?.data?.message || err.message));

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { InputField } from '../../components';
+import { fetchData } from '../../util/fetchdata';
 
 function CatalogUpdate() {
     const [catalogs, setCatalogs] = useState([]);
@@ -11,17 +12,15 @@ function CatalogUpdate() {
         name: ''
     });
 
-    const fetchCatalogs = async () => {
-        try {
-            const response = await axios.get('https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Catalogs/GetAll');
-            setCatalogs(response.data.data.catalogs);
-        } catch (err) {
-            console.error('Katalog olishda xatolik:', err);
-            setError("Ma'lumotlarni yuklashda xatolik yuz berdi.");
-        } finally {
-            setLoading(false);
-        }
-    };
+    useEffect(() => {
+        fetchData(
+            'Catalogs/GetAll',
+            'catalogs',
+            setCatalogs,
+            setError,
+            setLoading
+        )
+    }, []);
 
     const openModal = (catalog) => {
         setFormData(catalog);
@@ -43,17 +42,12 @@ function CatalogUpdate() {
     const updateCatalog = async (id) => {
         try {
             await axios.put(`https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Catalogs/Update/${id}`, formData);
-            fetchCatalogs();
             closeModal();
         } catch (error) {
             console.error('Yangilashda xatolik:', error);
             alert("Yangilashda xatolik! Iltimos qayta urinib ko'ring");
         }
     };
-
-    useEffect(() => {
-        fetchCatalogs();
-    }, []);
 
     return (
         <div className="p-6 max-w-6xl mx-auto">

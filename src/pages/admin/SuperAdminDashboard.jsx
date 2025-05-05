@@ -11,11 +11,14 @@ import AdminSubMenu from './AdminSubMenu';
 
 // hooks
 import { useAuth } from '../../hooks/useAuth.jsx';
+import { useAuthTimeout } from '../../hooks/useAuthTimeout.jsx';
 
 
 function SuperAdminDashboard() {
   const [isWidth, setIsWidth] = useState(true)
   const { handleLogout } = useAuth();
+
+  useAuthTimeout()
 
   return (
     <div className='w-screen h-screen flex'>

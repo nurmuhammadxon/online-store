@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { fetchData } from '../../util/fetchdata';
 
 function BrendRemove() {
     const [brends, setBrends] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
-    const fetchBrend = async () => {
-        try {
-            const response = await axios.get('https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Brends/GetAll');
-            setBrends(response.data.data.brands);
-        } catch (err) {
-            console.error('Brend olishda xatolik:', err);
-            setError("Ma'lumotlarni yuklashda xatolik yuz berdi.");
-        } finally {
-            setLoading(false);
-        }
-    };
+    useEffect(() => {
+        fetchData(
+            'Brends/GetAll',
+            'brands',
+            setBrends,
+            setError,
+            setLoading
+        )
+    }, []);
 
     const deleteBrend = async (id) => {
 
@@ -26,15 +25,10 @@ function BrendRemove() {
         try {
             await axios.delete(`https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Brends/Delete/${id}`);
             alert("Brend o'chirildi!");
-            fetchBrend()
         } catch (err) {
             setError("O'chirishda xatolik! Iltimos qayta urinib ko'ring");
         }
     };
-
-    useEffect(() => {
-        fetchBrend()
-    }, []);
 
     return (
         <div className="p-6 max-w-6xl mx-auto">

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { fetchData } from '../../util/fetchdata';
 
 function BrendList() {
     const [brends, setBrends] = useState([]);
@@ -7,19 +7,13 @@ function BrendList() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchBrend = async () => {
-            try {
-                const response = await axios.get('https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Brends/GetAll');
-                setBrends(response.data.data.brands);
-            } catch (err) {
-                console.error('Brend olishda xatolik:', err);
-                setError("Ma'lumotlarni yuklashda xatolik yuz berdi.");
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchBrend();
+        fetchData(
+            'Brends/GetAll',
+            'brands',
+            setBrends,
+            setError,
+            setLoading
+        )
     }, []);
 
     return (
