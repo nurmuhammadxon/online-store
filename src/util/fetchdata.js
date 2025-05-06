@@ -4,15 +4,16 @@ export const fetchData = async (
     api,
     dataName,
     setData,
-    setError = false,
-    setLoading = false
+    setError,
+    setLoading
 ) => {
     try {
+        if (setLoading) setLoading(true);
         const res = await axios.get(`https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/${api}`);
         setData(res.data.data[dataName]);
     } catch (error) {
-        setError('Ma\'lumotni olishda xatolik yuz berdi: ' + error.message);
+        if (setError) setError("Ma'lumotni olishda xatolik yuz berdi: " + error.message);
     } finally {
-        setLoading(false);
+        if (setLoading) setLoading(false);
     }
-}
+};

@@ -158,6 +158,32 @@ export const SuperAdminMenu = [
         ]
     },
     {
+        id: 9,
+        title: 'Banner',
+        subMenu: [
+            {
+                id: 901,
+                title: "Bannerlar ro'yxati",
+                link: '/admin/super-admin/banner-list'
+            },
+            {
+                id: 902,
+                title: "Banner qo'shish",
+                link: '/admin/super-admin/banner-add'
+            },
+            {
+                id: 903,
+                title: "Bannerni tahrirlash",
+                link: '/admin/super-admin/banner-update',
+            },
+            {
+                id: 904,
+                title: "Bannerni o'chirish",
+                link: '/admin/super-admin/banner-delete'
+            }
+        ]
+    },
+    {
         id: 3,
         title: "Adminlar",
         subMenu: [
@@ -314,7 +340,7 @@ export const usernav = [
         id: 1,
         title: 'Savat',
         link: '/user-about/cart-item',
-        key: 'cartItem'
+        key: 'cart-item'
     },
     {
         id: 2,

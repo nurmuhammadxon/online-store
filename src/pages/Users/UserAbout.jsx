@@ -1,22 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-
-// icons
-import { CiLogout } from 'react-icons/ci';
 
 // constants
 import { usernav } from '../../util/Constants';
-
-// hooks
-import { useAuthTimeout } from '../../hooks/useAuthTimeout';
 
 function UserAbout() {
     const pathname = useLocation().pathname.split('/')
     const navbarItem = pathname[pathname.length - 1]
     const navigate = useNavigate();
     const [navbar, setNavbar] = useState(navbarItem);
-
-    useAuthTimeout()
 
     const user = JSON.parse(sessionStorage.getItem('user'));
 
@@ -39,8 +31,8 @@ function UserAbout() {
                 {user.firstName} {user.lastName}
             </h1>
 
-            <div className="flex items-start justify-between mt-6">
-                <div className="flex flex-col w-1/3 gap-2">
+            <div className="flex flex-col md:flex-row items-start justify-between mt-6">
+                <div className="flex flex-col w-full md:w-1/3 gap-2">
                     {usernav.map((item) => (
                         <button
                             key={item.id}
@@ -52,7 +44,7 @@ function UserAbout() {
                         </button>
                     ))}
                 </div>
-                <div className="w-2/3 px-5">
+                <div className="w-full md:w-2/3 md:px-5">
                     <Outlet />
                 </div>
             </div>

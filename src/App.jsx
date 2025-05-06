@@ -52,7 +52,6 @@ import UserOrders from './pages/Users/UserOrders';
 import UserCartItems from './pages/Users/UserCartItems';
 // prdoucts
 import ProductsAdd from './pages/products/ProductsAdd';
-import ProductCategory from './pages/products/ProductCategory';
 import ProductList from './pages/products/ProductList';
 import ProductsRemove from './pages/products/ProductsRemove';
 import ProductsUpdate from './pages/products/ProductUpdate';
@@ -60,6 +59,11 @@ import ProductsUpdate from './pages/products/ProductUpdate';
 // Routes
 import PublicRoute from './routes/PublicRoute';
 import PrivateRoute from './routes/PrivateRoute';
+import BannerAdd from './pages/banner/BannerAdd';
+import BannerList from './pages/banner/BannerList';
+import BannerRemove from './pages/banner/BnnerRemove';
+import CategoryPage from './pages/CategoryPage';
+import BrandPage from './pages/BrandPage';
 
 function App() {
   const router = createBrowserRouter([
@@ -115,21 +119,25 @@ function App() {
             }
           ]
         },
-        // product category layout
+        // CATEGORY route
         {
           path: "category",
           element: <ProductsLayouts />,
           children: [
-            {
-              index: true,
-              element: <ProductsAll />
-            },
-            {
-              path: "celebrities",
-              element: <ProductCategory />
-            },
+            { index: true, element: <ProductsAll /> },
+            { path: ":categoryName", element: <CategoryPage /> }
           ]
         },
+
+        // BRAND route
+        {
+          path: "brand",
+          element: <ProductsLayouts />,
+          children: [
+            { path: ":brandName", element: <BrandPage /> }
+          ]
+        }
+
       ]
     },
 
@@ -194,10 +202,6 @@ function App() {
                   path: 'produtc-add',
                   element: <ProductsAdd />
                 },
-                // {
-                //   path: 'produtc-update',
-                //   element: <ProductsUpdate />
-                // },
                 {
                   path: 'produtc-delete',
                   element: <ProductsRemove />
@@ -254,6 +258,20 @@ function App() {
                 {
                   path: 'catalog-delete',
                   element: <CatalogRemove />
+                },
+
+                // banner
+                {
+                  path: 'banner-list',
+                  element: <BannerList />
+                },
+                {
+                  path: 'banner-add',
+                  element: <BannerAdd />
+                },
+                {
+                  path: 'banner-delete',
+                  element: <BannerRemove />
                 }
               ]
             },

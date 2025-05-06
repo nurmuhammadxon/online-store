@@ -1,119 +1,191 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Modal } from '../../components';
+import { fetchData } from '../../util/fetchdata';
 
 function UserCartItems() {
     const [cartItems, setCartItems] = useState([]);
-    const [orders, setOrders] = useState([]);
+    const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const [modalMessage, setModalMessage] = useState('');
     const [modalType, setModalType] = useState('');
+    const [quantity, setQuantity] = useState({});
 
     useEffect(() => {
-        const fetchCartItems = async () => {
-            try {
-                const response = await axios.get('/api/cart-items'); // API endpointini almashtiring
-                setCartItems(response.data.cartItems || []);
-                setOrders(response.data.orders || []);
-            } catch (err) {
-                setError('Savatdagi buyurtmalarni olishda xatolik yuz berdi.');
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchCartItems();
+        fetchData('CartItems/GetAll', 'cartItems', setCartItems, setError, setLoading);
     }, []);
 
-    // Savatdan buyurtmani rasmiylashtirish
-    const handleFinalizeOrder = async (item) => {
+    useEffect(() => {
+        if (cartItems.length > 0) {
+            const productIds = cartItems.map(item => item.productId);
+            fetchProducts(productIds);
+        }
+    }, [cartItems]);
+
+    const fetchProducts = async (productIds) => {
         try {
-            // Savatdagi buyurtmani o'chirish
-            const updatedCartItems = cartItems.filter(cartItem => cartItem.id !== item.id);
-            setCartItems(updatedCartItems);
-
-            // Buyurtmani orders ro'yxatiga qo'shish
-            const updatedOrders = [...orders, { ...item, status: 'Yetkazildi' }];
-            setOrders(updatedOrders);
-
-            // API-ga buyurtmani yuborish
-            await axios.post('/api/orders', { ...item, status: 'Yetkazildi' }); // Orders API endpointini almashtiring
-
-            // Modalda muvaffaqiyatli xabarni ko'rsatish
-            setModalMessage('Buyurtma rasmiylashtirildi');
-            setModalType('success');
-        } catch (err) {
-            setError('Buyurtmani rasmiylashtirishda xatolik yuz berdi.');
-            setModalMessage('Xatolik yuz berdi. Iltimos, qaytadan urinib ko\'ring.');
-            setModalType('error');
+            const response = await axios.get(
+                `https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Products/GetAllProducts`,
+                {
+                    params: {
+                        sort: false,
+                        ids: productIds.join(','),
+                    },
+                }
+            );
+            setProducts(response.data.data.products);
+        } catch (error) {
+            setError('Mahsulotlarni olishda xatolik yuz berdi');
         }
     };
 
-    // Savatdan buyurtmani o'chirish
+    const handleIncreaseQuantity = (id) => {
+        setQuantity((prevState) => ({
+            ...prevState,
+            [id]: (prevState[id] || 1) + 1,
+        }));
+    };
+
+    const handleDecreaseQuantity = (id) => {
+        setQuantity((prevState) => ({
+            ...prevState,
+            [id]: prevState[id] && prevState[id] > 1 ? prevState[id] - 1 : 1,
+        }));
+    };
+
     const handleRemoveItem = async (id) => {
         try {
-            // API orqali buyurtmani o'chirish
-            await axios.delete(`/api/cart-items/${id}`); // O'chirish uchun API endpointini almashtiring
+            await axios.delete(
+                `https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/CartItems/RemoveCartItem/remove/${id}`,
+                {
+                    params: {
+                        token: true
+                    }
+                }
+            );
 
-            // Mahsulotni savatdan olib tashlash
-            const updatedCartItems = cartItems.filter(item => item.id !== id);
-            setCartItems(updatedCartItems);
+            setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
 
-            // Modalda o'chirish xabarini ko'rsatish
             setModalMessage('Mahsulot o\'chirildi');
             setModalType('info');
-        } catch (err) {
-            setError('Mahsulotni o\'chirishda xatolik yuz berdi.');
-            setModalMessage('Xatolik yuz berdi. Iltimos, qaytadan urinib ko\'ring.');
+        } catch (error) {
+            setModalMessage('Mahsulotni o\'chirishda xatolik yuz berdi');
             setModalType('error');
+            console.log(error);
+        }
+    };
+
+
+    const handleFinalizeOrder = async (item) => {
+        const updatedQuantity = quantity[item.id] || 1;
+
+        const cartItem = cartItems.find((cartItem) => cartItem.id === item.id);
+        const userId = cartItem ? cartItem.userId : 0;
+
+        const order = {
+            userId: userId,
+            productId: item.productId,
+            quantity: updatedQuantity,
+        };
+
+        try {
+            await axios.post(
+                'https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Orders/Add',
+                order
+            );
+
+            await handleRemoveItem(item.id);
+
+            setModalMessage('Buyurtma rasmiylashtirildi');
+            setModalType('info');
+        } catch (error) {
+            setModalMessage('Buyurtma rasmiylashtirishda xatolik yuz berdi');
+            setModalType('error');
+            console.log(error);
         }
     };
 
     if (loading) return <p className="text-center text-gray-500">Yuklanmoqda...</p>;
-    if (error) return <p className="text-center text-red-500">{error}</p>;
 
     return (
-        <div className="container p-6 mx-auto">
-            <h2 className="mb-6 text-2xl font-semibold text-gray-800">Savatdagi Mahsulotlar</h2>
-
+        <div className="container p-6 mx-auto max-w-7xl">
+            <div className='w-full flex items-center justify-between'>
+                <h2 className="mb-6 text-3xl font-semibold text-gray-900">Savatdagi Mahsulotlar</h2>
+                <button className=''>
+                    Hammasini o'chirish
+                </button>
+            </div>
             {modalMessage && (
-                <Modal
-                    message={modalMessage}
-                    type={modalType}
-                    onClose={() => setModalMessage('')}
-                />
+                <Modal message={modalMessage} type={modalType} onClose={() => setModalMessage('')} />
             )}
 
             {cartItems.length > 0 ? (
-                cartItems.map(item => (
-                    <div key={item.id} className="flex items-center justify-between p-4 mb-4 transition-shadow bg-white rounded-lg shadow-md hover:shadow-xl">
-                        <div className="flex items-center gap-4">
-                            <img src={item.image} alt={item.name} className="object-cover w-20 h-20 rounded-md" />
-                            <div>
-                                <h3 className="text-lg font-semibold text-gray-900">{item.name}</h3>
-                                <p className="text-gray-500">Narx: ${item.price} x {item.quantity}</p>
+                cartItems.map((item) => {
+                    const product = products.find((prod) => prod.id === item.productId);
+
+                    return product ? (
+                        <div
+                            key={item.id}
+                            className="flex flex-col lg:flex-row items-center justify-between gap-4 p-5 mb-5 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+                        >
+                            <div className="flex items-start gap-6 w-full lg:w-2/3">
+                                <img
+                                    src={`https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/${product.images.split(';')[0]
+                                        }`}
+                                    alt={`${product.productName} image`}
+                                    className="object-cover w-24 h-24 rounded-md shadow-md"
+                                />
+                                <div className="w-full">
+                                    <h3 className="text-xl font-semibold text-gray-800">{product.productName}</h3>
+                                    <p className="text-gray-500">Narx: ${product.price}</p>
+                                    {/* Quantity control with + and - buttons */}
+                                    <div className="flex items-center gap-4 mt-2">
+                                        <button
+                                            onClick={() => handleDecreaseQuantity(item.id)}
+                                            className="bg-gray-200 px-2.5 py-1 rounded-lg text-gray-800 transition-colors hover:bg-gray-300"
+                                        >
+                                            -
+                                        </button>
+                                        <input
+                                            type="number"
+                                            value={quantity[item.id] || 1}
+                                            readOnly
+                                            className="w-16 text-center border border-gray-300 rounded-md shadow-sm"
+                                        />
+                                        <button
+                                            onClick={() => handleIncreaseQuantity(item.id)}
+                                            className="bg-gray-200 px-2.5 py-1 rounded-lg text-gray-800 transition-colors hover:bg-gray-300"
+                                        >
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="flex flex-col items-end lg:justify-between gap-4 w-full lg:w-1/3 mt-4 sm:mt-0">
+                                <p className="font-semibold text-gray-900">
+                                    Jami: ${(product.price * (quantity[item.id] || 1)).toFixed(2)}
+                                </p>
+                                <div className="flex gap-4 w-full sm:w-auto">
+                                    <button
+                                        className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors w-full sm:w-auto"
+                                        onClick={() => handleFinalizeOrder(item)}
+                                    >
+                                        Rasmiylashtirish
+                                    </button>
+                                    <button
+                                        className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors w-full sm:w-auto"
+                                        onClick={() => handleRemoveItem(item.id)}
+                                    >
+                                        O'chirish
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                        <div className="flex items-center space-x-6">
-                            <p className="font-semibold text-gray-800">Jami: ${item.price * item.quantity}</p>
-                            <div className="flex items-center gap-4">
-                                <button
-                                    className="font-semibold text-green-600 hover:text-green-800 transition-colors duration-300"
-                                    onClick={() => handleFinalizeOrder(item)}
-                                >
-                                    Rasmiylashtirish
-                                </button>
-                                <button
-                                    className="font-semibold text-red-600 hover:text-red-800 transition-colors duration-300"
-                                    onClick={() => handleRemoveItem(item.id)}
-                                >
-                                    O'chirish
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                ))
+                    ) : (
+                        <p className="text-gray-500">Mahsulot topilmadi</p>
+                    );
+                })
             ) : (
                 <p className="text-gray-500">Savatda hech qanday mahsulot yo'q.</p>
             )}

@@ -1,7 +1,7 @@
 import React from 'react'
 
 // components
-import { Banner, Categories, ProductsAll } from '../components/index'
+import { Banner, ProductsAll } from '../components/index'
 
 
 function HomePage() {
@@ -9,7 +9,6 @@ function HomePage() {
         <div>
             <Banner />
             <ProductsAll />
-            <Categories />
         </div>
     )
 }

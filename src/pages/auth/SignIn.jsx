@@ -1,8 +1,12 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+// icons
 import { FaRegUserCircle } from "react-icons/fa"
 import { Link, useNavigate } from 'react-router-dom'
+// componetns 
 import { InputField } from '../../components'
+// hooks
+import { useAuthTimeout } from '../../hooks/useAuthTimeout'
 
 function SignIn() {
     const [isPassword, setIsPassword] = useState(false)
@@ -10,6 +14,8 @@ function SignIn() {
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
+
+    useAuthTimeout()
 
     useEffect(() => {
         const isAuth = sessionStorage.getItem('auth');

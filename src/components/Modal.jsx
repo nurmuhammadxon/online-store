@@ -27,7 +27,7 @@ function Modal({ message, type, onClose }) {
 
     return (
         message && (
-            <div className="fixed inset-0 flex items-center justify-center z-50">
+            <div className="fixed top-10 left-0 w-full flex justify-center z-50">
                 <div className={`p-6 rounded-lg ${getBackgroundColor()} text-white`}>
                     <p>{message}</p>
                     <button
