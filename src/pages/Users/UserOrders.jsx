@@ -44,29 +44,22 @@ function Orders() {
         return deliveryTime.toLocaleDateString();
     };
 
-    const removeOrder = async (order) => {
-        const created = new Date(order.createdAt);
-        const now = new Date();
-        const diffHours = (now - created) / (1000 * 60 * 60);
-
-        if (diffHours > 5) {
-            setModalMessage('Buyurtma rasmiylashtirilganidan beri 5 soatdan oshdi. Endi uni o‘chirib bo‘lmaydi.');
-            return;
-        }
-
+    const removeOrder = async (id) => {
         try {
             await axios.delete(
-                `https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Orders/DeleteOrder/${order.id}`,
-                { params: { token: true } }
+                `https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Orders/Remove/${id}`,
             );
-            setOrders(prev => prev.filter(o => o.id !== order.id));
+            setOrders(prev => prev.filter(o => o.id !== id));
+            setModalMessage('Buyurtmani o\'chirildi');
+            setModalType('info');
         } catch {
             setError("Buyurtmani o'chirishda xatolik yuz berdi.");
+            setModalMessage(error);
+            setModalType('error');
         }
     };
 
     if (loading) return <p className="text-center text-gray-500">Yuklanmoqda...</p>;
-    if (error) return <p className="text-center text-red-500">{error}</p>;
 
     return (
         <div className="container p-6 mx-auto">
@@ -103,8 +96,8 @@ function Orders() {
                             <div className="flex items-center gap-4">
                                 <p className="font-semibold text-gray-800">Jami: ${(product.price * order.quantity).toLocaleString()}</p>
                                 <button
-                                    className="font-semibold text-red-600 hover:text-red-800"
-                                    onClick={() => removeOrder(order)}
+                                    className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors w-full sm:w-auto"
+                                    onClick={() => removeOrder(order.id)}
                                 >
                                     O‘chirish
                                 </button>
