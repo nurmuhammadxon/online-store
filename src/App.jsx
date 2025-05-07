@@ -14,6 +14,9 @@ import ProductCardLayout from './layouts/ProductCardLayout';
 import HomePage from './pages/HomePage';
 import SignIn from './pages/auth/SignIn';
 import SignUp from './pages/auth/SignUp';
+import CategoryPage from './pages/CategoryPage';
+import BrandPage from './pages/BrandPage';
+import ErrorPage from './pages/ErrorPage';
 
 // super admin
 import SuperAdminDashboard from './pages/admin/SuperAdminDashboard';
@@ -30,6 +33,10 @@ import UsersRemove from './pages/admin/usersfolder/UsersRemove';
 import UsersList from './pages/admin/usersfolder/UsersList';
 import UserUpdate from './pages/admin/usersfolder/UserUpdate';
 import CreateUser from './pages/admin/usersfolder/CreateUser';
+// banners
+import BannerAdd from './pages/banner/BannerAdd';
+import BannerList from './pages/banner/BannerList';
+import BannerRemove from './pages/banner/BnnerRemove';
 // brends
 import BrendList from './pages/brends/BrendList';
 import BrendAdd from './pages/brends/BrendAdd';
@@ -50,6 +57,10 @@ import UserAbout from './pages/Users/UserAbout';
 import UserSetting from './pages/Users/UserSetting';
 import UserOrders from './pages/Users/UserOrders';
 import UserCartItems from './pages/Users/UserCartItems';
+// Favourites
+import FavouritesList from './pages/favourite/FavouritesList';
+// Orders
+import OrdersLits from './pages/orders/OrdersList';
 // prdoucts
 import ProductsAdd from './pages/products/ProductsAdd';
 import ProductList from './pages/products/ProductList';
@@ -59,13 +70,6 @@ import ProductsUpdate from './pages/products/ProductUpdate';
 // Routes
 import PublicRoute from './routes/PublicRoute';
 import PrivateRoute from './routes/PrivateRoute';
-import BannerAdd from './pages/banner/BannerAdd';
-import BannerList from './pages/banner/BannerList';
-import BannerRemove from './pages/banner/BnnerRemove';
-import CategoryPage from './pages/CategoryPage';
-import BrandPage from './pages/BrandPage';
-import ErrorPage from './pages/ErrorPage';
-import FavouritesList from './pages/favourite/FavouritesList';
 
 function App() {
   const router = createBrowserRouter([
@@ -280,9 +284,16 @@ function App() {
                 {
                   path: 'banner-delete',
                   element: <BannerRemove />
-                }
+                },
+
+                // oreders
+                {
+                  path: 'order-list',
+                  element: <OrdersLits />
+                },
               ]
             },
+            // for admin
             {
               path: 'panel',
               element: <AdminDashboard />,
@@ -300,10 +311,70 @@ function App() {
                   path: 'user-update',
                   element: <UserUpdate />
                 },
+
+                // products
                 {
-                  path: 'users-remove',
-                  element: <UsersRemove />
-                }
+                  path: 'produtc-list',
+                  element: <ProductList />
+                },
+                {
+                  path: 'produtc-add',
+                  element: <ProductsAdd />
+                },
+
+                // brends
+                {
+                  path: 'brend-list',
+                  element: <BrendList />
+                },
+                {
+                  path: 'brend-add',
+                  element: <BrendAdd />
+                },
+                {
+                  path: 'brend-update',
+                  element: <BrendUpdate />
+                },
+                // categorys
+                {
+                  path: "category-list",
+                  element: <CategoryList />,
+                },
+                {
+                  path: 'category-add',
+                  element: <CategoryAdd />,
+                },
+                {
+                  path: 'category-update',
+                  element: <CategoryUpdate />
+                },
+                // catalog
+                {
+                  path: 'catalog-list',
+                  element: <CatalogList />
+                },
+                {
+                  path: 'catalog-add',
+                  element: <CatalogAdd />
+                },
+                {
+                  path: 'catalog-update',
+                  element: <CatalogUpdate />
+                },
+                // banner
+                {
+                  path: 'banner-list',
+                  element: <BannerList />
+                },
+                {
+                  path: 'banner-add',
+                  element: <BannerAdd />
+                },
+                // oreders
+                {
+                  path: 'order-list',
+                  element: <OrdersLits />
+                },
               ]
             },
           ]

@@ -76,6 +76,19 @@ function UserCartItems() {
         }
     };
 
+    const handleRemoveAll = async () => {
+        try {
+            await axios.delete(
+                'https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/CartItems/ClearAllCartItems/clear',
+                {
+                    params: { clear: true }
+                }
+            );
+            setCartItems([]);
+        } catch (error) {
+            console.error("Savatni o'chirishda xatolik:", error);
+        }
+    };
 
     const handleFinalizeOrder = async (item) => {
         const updatedQuantity = quantity[item.id] || 1;
@@ -112,7 +125,10 @@ function UserCartItems() {
         <div className="container p-6 mx-auto max-w-7xl">
             <div className='w-full flex items-center justify-between'>
                 <h2 className="mb-6 text-3xl font-semibold text-gray-900">Savatdagi Mahsulotlar</h2>
-                <button className=''>
+                <button
+                    className="px-4 py-2 bg-red-600 border-none text-white rounded hover:bg-red-700 transition"
+                    onClick={handleRemoveAll}
+                >
                     Hammasini o'chirish
                 </button>
             </div>

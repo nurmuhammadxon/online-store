@@ -6,7 +6,7 @@ import { IoCartOutline, IoMenu, IoClose } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom';
 import { RiHome3Line } from "react-icons/ri";
 
-import { Navbar } from './index'
+import { Navbar, Search } from './index'
 
 function Header() {
   const [cartCount, setCartCount] = useState(0);
@@ -52,16 +52,8 @@ function Header() {
           {/* desktop */}
           <>
             {/* search */}
-            <div className='hidden w-full max-w-xs md:block sm:max-w-sm md:max-w-md lg:max-w-lg'>
-              <form action="" className='w-full'>
-                <label className='flex items-center justify-between pl-2 border rounded-full focus-within:shadow'>
-                  <input type="search" placeholder='Search' className='w-full outline-none pl-3.5' />
-                  <span className='text-lg min-w-[50px] h-8 flex items-center justify-center rounded-r-full text-white bg-primary'>
-                    <FaSearch />
-                  </span>
-                </label>
-              </form>
-            </div>
+            <Search />
+            
             {/* User , Heart and Cart buttons */}
             <div className='items-center hidden gap-4 md:flex'>
 

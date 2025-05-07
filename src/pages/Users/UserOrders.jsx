@@ -7,11 +7,11 @@ function Orders() {
     const [orders, setOrders] = useState([]);
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState('');
     const [modalMessage, setModalMessage] = useState('');
+    const [modalType, setModalType] = useState('')
 
     useEffect(() => {
-        fetchData('Orders/GetAll', 'orders', setOrders, setError, setLoading);
+        fetchData('Orders/GetAll', 'orders', setOrders,);
     }, []);
 
     useEffect(() => {
@@ -45,18 +45,21 @@ function Orders() {
     };
 
     const removeOrder = async (id) => {
-        try {
-            await axios.delete(
-                `https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Orders/Remove/${id}`,
-            );
-            setOrders(prev => prev.filter(o => o.id !== id));
-            setModalMessage('Buyurtmani o\'chirildi');
-            setModalType('info');
-        } catch {
-            setError("Buyurtmani o'chirishda xatolik yuz berdi.");
-            setModalMessage(error);
-            setModalType('error');
-        }
+
+        setModalMessage("Buyurtmani o'chira olmaysiz");
+        setModalType('error')
+
+        // try {
+        //     await axios.delete(
+        //         `https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Orders/Remove/${id}`,
+        //     );
+        //     setOrders(prev => prev.filter(o => o.id !== id));
+        //     setModalMessage('Buyurtmani o\'chirildi');
+        //     setModalType('info');
+        // } catch {
+        //     setModalMessage(error);
+        //     setModalType('error');
+        // }
     };
 
     if (loading) return <p className="text-center text-gray-500">Yuklanmoqda...</p>;
@@ -68,7 +71,7 @@ function Orders() {
             {modalMessage && (
                 <Modal
                     message={modalMessage}
-                    type="info"
+                    type={modalType}
                     onClose={() => setModalMessage('')}
                 />
             )}
