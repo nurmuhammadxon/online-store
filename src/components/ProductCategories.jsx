@@ -35,10 +35,15 @@ function ProductCategories({ category }) {
             </div>
             <Swiper
                 modules={[Navigation]}
-                spaceBetween={10}
-                slidesPerView={4}
+                spaceBetween={16} 
                 navigation
                 breakpoints={{
+                    320: {
+                        slidesPerView: 1,
+                    },
+                    480: {
+                        slidesPerView: 1.5,
+                    },
                     640: {
                         slidesPerView: 2,
                     },
@@ -48,8 +53,12 @@ function ProductCategories({ category }) {
                     1024: {
                         slidesPerView: 4,
                     },
+                    1280: {
+                        slidesPerView: 5,
+                    },
                 }}
             >
+
                 {filteredProducts.map(product => (
                     <SwiperSlide
                         key={product.id}

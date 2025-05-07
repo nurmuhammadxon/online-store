@@ -15,8 +15,8 @@ function Navbar() {
 
     return (
         <>
-            <div className="hidden md:block bg-white shadow-sm mt-1.5 py-2.5 px-2.5">
-                <div className="w-full mx-auto flex gap-4 overflow-x-auto">
+            <div className="block bg-white shadow-sm mt-1.5 py-2.5 px-2.5">
+                <div className="w-full mx-auto flex gap-4 overflow-x-hidden lg:overflow-x-auto">
                     <button
                         className="flex items-center justify-center gap-1.5 py-1 px-3 bg-gray-50 rounded-xl border hover:bg-blue-100 cursor-pointer transition duration-200"
                         onClick={() => setIsSidebarOpen(true)}
