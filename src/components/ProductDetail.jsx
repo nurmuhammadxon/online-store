@@ -48,16 +48,16 @@ function ProductDetail() {
     const images = product.images ? product.images.split(";") : [];
 
     return (
-        <div className="max-w-6xl mx-auto p-6 bg-white rounded-lg shadow-lg mt-6">
-            <div className="grid grid-cols-12 gap-6">
+        <div className="max-w-6xl mx-auto p-4 sm:p-6 bg-white rounded-lg shadow-lg mt-6">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
                 {/* Chap rasm galereyasi */}
-                <div className="col-span-2 flex flex-col gap-4">
+                <div className="col-span-12 md:col-span-2 flex md:flex-col flex-row gap-2 md:gap-4">
                     {images.length > 0 ? (
                         images.map((image, index) => (
                             <button
                                 key={index}
                                 onClick={() => setMainImage(image)}
-                                className={`size-20 p-1 border border-primary rounded-lg transition hover:ring-2 hover:ring-strongBlue ${image === mainImage ? 'border-none ring-2 ring-blue-800' : ''
+                                className={`size-16 md:size-20 p-1 border border-primary rounded-lg transition hover:ring-2 hover:ring-strongBlue ${image === mainImage ? 'border-none ring-2 ring-blue-800' : ''
                                     }`}
                             >
                                 <img
@@ -68,15 +68,15 @@ function ProductDetail() {
                             </button>
                         ))
                     ) : (
-                        <p className="text-gray-500">Rasm mavjud emas</p>
+                        <p className="text-gray-500 text-sm">Rasm mavjud emas</p>
                     )}
                 </div>
 
                 {/* Asosiy rasm */}
-                <div className="col-span-6 flex justify-center items-center">
+                <div className="col-span-12 md:col-span-6 flex justify-center items-center">
                     {mainImage ? (
                         <img
-                            className="rounded-lg shadow-xl transition-transform hover:scale-105 max-w-xl w-full max-h-[500px] object-contain"
+                            className="rounded-lg shadow-xl transition-transform hover:scale-105 w-full max-w-full max-h-[400px] sm:max-h-[500px] object-contain"
                             src={`https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/${mainImage}`}
                             alt="Asosiy mahsulot rasmi"
                         />
@@ -86,9 +86,9 @@ function ProductDetail() {
                 </div>
 
                 {/* Mahsulot ma'lumotlari */}
-                <div className="col-span-4 bg-white p-6 rounded-lg shadow-lg flex flex-col gap-6">
+                <div className="col-span-12 md:col-span-4 bg-white p-4 sm:p-6 rounded-lg shadow-lg flex flex-col gap-4 sm:gap-6">
                     <div className="flex justify-between items-center">
-                        <p className="text-2xl font-semibold text-gray-900">{product.price.toLocaleString()} so'm</p>
+                        <p className="text-xl sm:text-2xl font-semibold text-gray-900">{product.price.toLocaleString()} so'm</p>
                     </div>
 
                     <button className="w-full bg-primary text-white py-3 rounded-lg hover:bg-primaryDark transition">
@@ -107,8 +107,8 @@ function ProductDetail() {
             </div>
 
             {/* Tavsif */}
-            <div className="mt-8">
-                <h2 className="text-xl font-semibold text-gray-800">Mahsulot tavsifi</h2>
+            <div className="mt-6 sm:mt-8">
+                <h2 className="text-lg sm:text-xl font-semibold text-gray-800">Mahsulot tavsifi</h2>
                 <p className="text-gray-600 mt-2">{product.description || 'Tavsif mavjud emas'}</p>
             </div>
 
