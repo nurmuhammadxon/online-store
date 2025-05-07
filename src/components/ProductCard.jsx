@@ -1,22 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-// icons
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { MdOutlineShoppingCart } from "react-icons/md";
-// componetns
-import { Modal } from '../components'
+import { Modal } from '../components';
 
 function ProductCard({ data }) {
     const [isLike, setIsLike] = useState(false);
-    const navigate = useNavigate();
+    const [favouriteId, setFavouriteId] = useState(null);
     const [modalMessage, setModalMessage] = useState('');
     const [modalType, setModalType] = useState('');
-
+    const navigate = useNavigate();
 
     const user = JSON.parse(sessionStorage.getItem('user'));
-    const auth = sessionStorage.getItem('auth')
+    const auth = sessionStorage.getItem('auth');
     const userId = user?.id;
+
+    useEffect(() => {
+        const fetchFavourites = async () => {
+            try {
+                const response = await axios.get(
+                    'https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Favourites/GetAll',
+                );
+                const favourites = response.data.data.favourites;
+                const favouriteItem = favourites.find(fav => fav.productId === data.id);
+
+                if (favouriteItem) {
+                    setIsLike(true);
+                    setFavouriteId(favouriteItem.id);
+                } else {
+                    setIsLike(false);
+                    setFavouriteId(null);
+                }
+            } catch (error) {
+                console.error('Sevimlilarni olishda xatolik:', error);
+            }
+        };
+
+        if (userId && auth) {
+            fetchFavourites();
+        }
+    }, [data.id, userId, auth]);
 
     const truncateWords = (text, wordLimit) => {
         if (!text) return '';
@@ -28,53 +52,46 @@ function ProductCard({ data }) {
 
     const handleLike = async () => {
         if (!userId || !auth) {
-            navigate('/signin')
+            navigate('/signin');
             return;
         }
 
-        const operation = isLike ? "remove" : "add";
-        setIsLike(!isLike);
+        const newLikeStatus = !isLike;
+        setIsLike(newLikeStatus);
 
         try {
-            await axios.post(
-                'https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Favourites/AddFavourite/add',
-                {
-                    userId: userId,
-                    productId: data.id,
-                },
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
+            if (newLikeStatus) {
+                await axios.post(
+                    'https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Favourites/AddFavourite/add',
+                    {
+                        userId: userId,
+                        productId: data.id,
                     },
-                    params: {
-                        token: true,
-                        operation: operation,
-                    },
-                }
-            );
-            if (!isLike) {
-                setModalMessage("Mahsulot sevimlilarga qo'shildi");
-                setModalType('info');
+                    {
+                        params: {
+                            token: true,
+                        },
+                    }
+                );
             } else {
-                setModalMessage("Mahsulot sevimlilardan chiqarildi");
-                setModalType('info');
+                await axios.delete(
+                    `https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Favourites/RemoveFavourite/remove/${favouriteId}`,
+                    {
+                        params: {
+                            token: true,
+                        },
+                    }
+                );
             }
+            
         } catch (error) {
-            if (!isLike) {
-                setModalMessage("Mahsulot sevimlilarga qo'shishda xatolik");
-                setModalType('info');
-            } else {
-                setModalMessage("Mahsulot sevimlilardan chiqarishda xatolik");
-                setModalType('info');
-            }
-
-            console.error('Sevimlilarni yangilashda xatolik:', error);
+            console.error('Xatolik:', error);
         }
     };
 
     const addToOrders = async (productId) => {
         if (!userId || !auth) {
-            navigate('/signin')
+            navigate('/signin');
             return;
         }
 
@@ -87,9 +104,6 @@ function ProductCard({ data }) {
                     quantity: 1,
                 },
                 {
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
                     params: {
                         token: true,
                         operation: "add",
@@ -101,17 +115,16 @@ function ProductCard({ data }) {
         } catch (error) {
             setModalMessage("Mahsulotni savatga qo'shishda xatolik");
             setModalType('error');
-
             console.error('Savatchaga qo‘shishda xatolik:', error);
         }
     };
 
     return (
         <div className="w-52 py-2.5 md:py-4 px-2.5 lg:px-6 cursor-pointer group flex flex-col justify-between hover:shadow-lg rounded-md transition-all duration-200">
-            {/* modal */}
             {modalMessage && (
                 <Modal message={modalMessage} type={modalType} onClose={() => setModalMessage('')} />
             )}
+
             <div className="relative pt-3.5 group">
                 <div onClick={() => navigate(`/products/${data.id}`)}>
                     <img
@@ -132,16 +145,12 @@ function ProductCard({ data }) {
             </div>
 
             <div onClick={() => navigate(`/products/${data.id}`)}>
-                <h3 className="text-base text-black leading-5 sm:mt-2.5">
-                    {data.productName}
-                </h3>
+                <h3 className="text-base text-black leading-5 sm:mt-2.5">{data.productName}</h3>
                 <p className="font-normal text-sm text-gray-500 leading-5 sm:mt-2.5">
                     {truncateWords(data.description, 10)}
                 </p>
                 <div className="flex items-end gap-2 sm:mt-2.5">
-                    <p className="text-sm font-semibold md:text-lg">
-                        {parseFloat(data.price)}
-                    </p>
+                    <p className="text-sm font-semibold md:text-lg">{parseFloat(data.price)}</p>
                     <p className="text-xs md:text-base text-gray-500 font-medium">so'm</p>
                 </div>
             </div>

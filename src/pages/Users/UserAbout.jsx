@@ -19,8 +19,16 @@ function UserAbout() {
 
     if (!user) {
         return (
-            <div className="mt-10 font-semibold text-center text-red-600">
-                Foydalanuvchi topilmadi. Iltimos, qayta kiring.
+            <div className="my-10 flex flex-col items-center justify-center">
+                <p className='font-semibold text-xl text-center text-red-600'>
+                    Siz akkountingizga kirmadingiz iltimos akkountingizga kiring
+                </p>
+                <button
+                    className='mt-6 px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg shadow-md transition duration-200 ease-in-out cursor-pointer'
+                    onClick={() => navigate('/signin')}
+                >
+                    Hisobga kirish
+                </button>
             </div>
         );
     }

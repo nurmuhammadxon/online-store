@@ -64,6 +64,8 @@ import BannerList from './pages/banner/BannerList';
 import BannerRemove from './pages/banner/BnnerRemove';
 import CategoryPage from './pages/CategoryPage';
 import BrandPage from './pages/BrandPage';
+import ErrorPage from './pages/ErrorPage';
+import FavouritesList from './pages/favourite/FavouritesList';
 
 function App() {
   const router = createBrowserRouter([
@@ -71,6 +73,7 @@ function App() {
     {
       path: '/',
       element: <MainLayout />,
+      errorElement: <ErrorPage />,
       children: [
         {
           index: true,
@@ -136,8 +139,12 @@ function App() {
           children: [
             { path: ":brandName", element: <BrandPage /> }
           ]
-        }
+        },
 
+        {
+          path: 'wishes',
+          element: <FavouritesList />
+        }
       ]
     },
 
@@ -145,6 +152,7 @@ function App() {
     {
       path: '/admin',
       element: <PrivateRoute />,
+      errorElement: <ErrorPage />,
       children: [
         {
           index: true,
