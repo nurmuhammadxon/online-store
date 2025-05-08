@@ -138,11 +138,11 @@ export const SuperAdminMenu = [
                 title: "Banner qo'shish",
                 link: '/admin/super-admin/banner-add'
             },
-            {
-                id: 903,
-                title: "Bannerni tahrirlash",
-                link: '/admin/super-admin/banner-update',
-            },
+            // {
+            //     id: 903,
+            //     title: "Bannerni tahrirlash",
+            //     link: '/admin/super-admin/banner-update',
+            // },
             {
                 id: 904,
                 title: "Bannerni o'chirish",

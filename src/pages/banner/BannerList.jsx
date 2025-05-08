@@ -25,13 +25,18 @@ function BannerList() {
                         <img
                             src={`https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/${banner.images.split(';')[0]}`}
                             alt={`Banner ${banner.id}`}
-                            className="w-full h-48 object-cover"
-                            onError={(e) => {
-                                e.target.src = "/placeholder.jpg";
-                            }}
+                            className="w-full h-52"
                         />
                         <div className="p-4">
-                            <p className="text-sm text-gray-600">Banner ID: {banner.id}</p>
+                            <p className="text-sm text-gray-600">
+                                Banner id: {banner.id}
+                            </p>
+                            <p className="text-sm text-gray-600">
+                                Brend id: {banner.brendId}
+                            </p>
+                            <p className="text-sm text-gray-600">
+                                Kategoriya ID: {banner.categoryId}
+                            </p>
                         </div>
                     </div>
                 )

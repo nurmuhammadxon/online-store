@@ -19,11 +19,11 @@ function Footer() {
                             </li>
                             <li className="flex items-center">
                                 <FaEnvelope className="mr-2 text-red-500" />
-                                <a href="#" className="hover:text-red-500">info@laptopsuz.uz</a>
+                                <a href="#" className="hover:text-red-500">info@shopuz.uz</a>
                             </li>
                             <li className="flex items-center">
                                 <FaLocationDot className="mr-2 text-red-500" />
-                                <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-red-500">Samarqand, O'zbekiston</a>
+                                <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-red-500">O'zbekiston</a>
                             </li>
                         </ul>
                     </div>
@@ -47,20 +47,20 @@ function Footer() {
                         <h3 className="mb-4 text-2xl font-semibold">Foydali havolalar</h3>
                         <ul className="space-y-2">
                             <li>
-                                <Link to="/terms" className="hover:text-red-500">Shartlar</Link>
+                                <Link to="/" className="hover:text-red-500">Shartlar</Link>
                             </li>
                             <li>
-                                <Link to="/privacy" className="hover:text-red-500">Maxfiylik siyosati</Link>
+                                <Link to="/" className="hover:text-red-500">Maxfiylik siyosati</Link>
                             </li>
                             <li>
-                                <Link to="/contact" className="hover:text-red-500">Aloqa</Link>
+                                <Link to="/" className="hover:text-red-500">Aloqa</Link>
                             </li>
                         </ul>
                     </div>
                 </div>
 
                 <div className="pt-4 mt-8 text-center border-t border-gray-700">
-                    <p>&copy; {new Date().getFullYear()} Laptops Uz. Barcha huquqlar himoyalangan.</p>
+                    <p>&copy; {new Date().getFullYear()} Shop Uz. Barcha huquqlar himoyalangan.</p>
                 </div>
             </div>
         </footer>
