@@ -24,7 +24,7 @@ const AdminRemove = () => {
     const deleteUser = async (id) => {
         const userToDelete = users.find(user => user.id === id);
 
-        if (userToDelete && userToDelete.userName === "superadmin") {
+        if (userToDelete && userToDelete.userName === "superAdmin" || "superadmin") {
             alert("Superadminni o'chirish mumkin emas!");
             return;
         }
