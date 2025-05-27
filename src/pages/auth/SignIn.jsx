@@ -35,7 +35,7 @@ function SignIn() {
         setLoading(true)
 
         try {
-            const resToken = await axios.post('https://165.232.87.222/api/Auth/Post/authenticate',
+            const resToken = await axios.post('http://165.232.87.222:5000/api/Auth/Post/authenticate',
                 {
                     userName: value.userName,
                     password: value.password
@@ -44,7 +44,7 @@ function SignIn() {
             )
 
             if (resToken.statusText === 'OK') {
-                const users = await axios.get('https://165.232.87.222/api/Users/GetAll')
+                const users = await axios.get('http://165.232.87.222:5000/api/Users/GetAll')
 
                 const foundUser = users.data.data.users.find(user => user.userName === value.userName && user.password === value.password)
 
