@@ -50,7 +50,7 @@ function SignIn() {
 
                 // role
                 if (foundUser) {
-                    const role = foundUser.role === 1
+                    const role = foundUser.role === 0
                         ? (foundUser.userName === 'superadmin' || foundUser.userName === "superAdmin" ? 'superAdmin' : 'admin')
                         : 'user';
 
