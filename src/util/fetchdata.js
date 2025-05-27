@@ -9,7 +9,7 @@ export const fetchData = async (
 ) => {
     try {
         if (setLoading) setLoading(true);
-        const res = await axios.get(`https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/${api}`);
+        const res = await axios.get(`http://165.232.87.222:5000/api/${api}`);
         setData(res.data.data[dataName]);
     } catch (error) {
         if (setError) setError("Ma'lumotni olishda xatolik yuz berdi: " + error.message);

@@ -31,7 +31,7 @@ function CategoryAdd() {
         setErrorMessage("");
 
         try {
-            const response = await axios.post('https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Categories/Insert', dataToSend);
+            const response = await axios.post('http://165.232.87.222:5000/api/Categories/Insert', dataToSend);
             alert('Kategoriya muvaffaqiyatli qo‘shildi!');
         } catch (error) {
             console.error('Xatolik:', error);

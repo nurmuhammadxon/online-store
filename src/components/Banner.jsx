@@ -16,7 +16,7 @@ function Banner() {
     useEffect(() => {
         const fetchDataGet = async () => {
             try {
-                const res = await axios.get(`https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Banners/GetAll`);
+                const res = await axios.get(`http://165.232.87.222:5000/api/Banners/GetAll`);
                 setBanners(res.data);
             } catch (error) {
                 console.log(error);
@@ -45,9 +45,9 @@ function Banner() {
                         className="flex items-center justify-center"
                     >
                         <img
-                            src={`https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/${item.images.split(';')[0]}`}
+                            src={`http://165.232.87.222:5000/${item.images.split(';')[0]}`}
                             alt={`Banner ${index}`}
-                            className="w-full h-full object-cover transition-transform duration-500 ease-in-out"
+                            className="w-full h-80 object-cover transition-transform duration-500 ease-in-out rounded-md"
                         />
                     </SwiperSlide>
                 ))}

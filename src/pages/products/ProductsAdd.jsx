@@ -42,7 +42,7 @@ function ProductsAdd() {
         });
 
         try {
-            await axios.post('https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Products/Add', formData, {
+            await axios.post('http://165.232.87.222:5000/api/Products/Add', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

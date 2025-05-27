@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 // icons
-import { FaSearch, FaRegUserCircle, FaRegHeart } from 'react-icons/fa';
+import { FaRegUserCircle, FaRegHeart } from 'react-icons/fa';
 import { IoCartOutline, IoMenu, IoClose } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom';
 import { RiHome3Line } from "react-icons/ri";
@@ -9,7 +9,6 @@ import { RiHome3Line } from "react-icons/ri";
 import { Navbar, Search } from './index'
 
 function Header() {
-  const [cartCount, setCartCount] = useState(0);
   const [isMenu, setIsMenu] = useState(false)
   const [activeBtn, setActiveBtn] = useState('home')
   const navigate = useNavigate();
@@ -17,12 +16,8 @@ function Header() {
   const handleBtn = (active, link) => {
     navigate(link)
     setActiveBtn(active)
+    setIsMenu(false)
   }
-
-  useEffect(() => {
-    const cartData = JSON.parse(localStorage.getItem('cart')) || [];
-    setCartCount(cartData.length);
-  }, []);
 
   const handleUserClick = () => {
     const isAuth = sessionStorage.getItem('auth');
@@ -32,6 +27,7 @@ function Header() {
     } else {
       navigate('/signin');
     }
+    setIsMenu(false)
   };
 
   return (
@@ -53,7 +49,7 @@ function Header() {
           <>
             {/* search */}
             <Search />
-            
+
             {/* User , Heart and Cart buttons */}
             <div className='items-center hidden gap-4 md:flex'>
 
@@ -62,13 +58,6 @@ function Header() {
                 onClick={() => navigate('/user-about/cart-item')}
               >
                 <IoCartOutline />
-                {
-                  cartCount > 0 && (
-                    <div className='hidden group-hover:flex items-center justify-center absolute -top-4 -right-1.5 size-5 text-center p-1 bg-strongBlue text-white rounded-full'>
-                      <p className='text-xs'>{cartCount}</p>
-                    </div>
-                  )
-                }
               </button>
 
               {/* Heart */}
@@ -114,48 +103,41 @@ function Header() {
 
                 {/* home page */}
                 <button
-                  className={`w-full flex items-center flex-col gap-1.5 text-2xl ${activeBtn === 'home' ? 'text-primary' : 'text-[#4d4f59]'}`}
+                  className={`w-full flex items-center flex-col gap-1.5 text-lg ${activeBtn === 'home' ? 'text-primary' : 'text-[#4d4f59]'}`}
                   onClick={() => handleBtn('home', '/')}
                 >
-                  <RiHome3Line className='text-4xl' />
+                  <RiHome3Line className='text-2xl' />
                   <span>Bosh sahifa</span>
                 </button>
 
 
                 {/* shopping cart */}
                 <button
-                  className={`w-full flex items-center flex-col gap-1.5 text-2xl group relative ${activeBtn === 'cart' ? 'text-primary' : 'text-[#4d4f59]'}`}
+                  className={`w-full flex items-center flex-col gap-1.5 text-lg group relative ${activeBtn === 'cart' ? 'text-primary' : 'text-[#4d4f59]'}`}
                   aria-label="Shopping Cart"
-                  onClick={() => handleBtn('cart', '/cart')}
+                  onClick={() => handleBtn('cart', '/user-about/cart-item')}
                 >
-                  <IoCartOutline className='text-4xl' />
-
-                  {cartCount > 0 && (
-                    <div className='absolute items-center justify-center hidden p-1 text-center text-white rounded-full group-hover:flex -top-4 right-6 size-5 bg-strongBlue'>
-                      <p className='text-xs'>{cartCount}</p>
-                    </div>
-                  )}
-
+                  <IoCartOutline className='text-2xl' />
                   <span className='font-medium'>Savat</span>
                 </button>
 
 
                 {/* Heart */}
-                <button className={`w-full flex items-center flex-col gap-1.5 text-2xl ${activeBtn === 'wishes' ? 'text-primary' : '/wishes'}`}
+                <button className={`w-full flex items-center flex-col gap-1.5 text-lg ${activeBtn === 'wishes' ? 'text-primary' : '/wishes'}`}
                   aria-label="Heart Cart"
                   onClick={() => handleBtn('wishes', '/wishes')}
                 >
-                  <FaRegHeart className='text-4xl' />
+                  <FaRegHeart className='text-2xl' />
                   <span>Saralanganlar</span>
                 </button>
 
                 {/* user */}
                 <button
-                  className={`w-full flex items-center flex-col gap-1.5 text-2xl ${activeBtn === 'user' ? 'text-primary' : 'text-[#4d4f59]'}`}
+                  className={`w-full flex items-center flex-col gap-1.5 text-lg ${activeBtn === 'user' ? 'text-primary' : 'text-[#4d4f59]'}`}
                   aria-label="User Profile"
                   onClick={handleUserClick}
                 >
-                  <FaRegUserCircle className='text-4xl' />
+                  <FaRegUserCircle className='text-2xl' />
                   <span>Kabinet</span>
                 </button>
               </div>

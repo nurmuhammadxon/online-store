@@ -38,7 +38,7 @@ function CreateUser() {
         setLoading(true);
         setError(null);
         try {
-            const response = await axios.post('https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Users/Insert', value);
+            const response = await axios.post('http://165.232.87.222:5000/api/Users/Insert', value);
 
             if (response.statusText === 'OK') {
                 alert('User yaratildi')

@@ -23,7 +23,7 @@ function BrendRemove() {
         if (!confirmDelete) return;
 
         try {
-            await axios.delete(`https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Brends/Delete/${id}`);
+            await axios.delete(`http://165.232.87.222:5000/api/Brends/Delete/${id}`);
             alert("Brend o'chirildi!");
         } catch (err) {
             setError("O'chirishda xatolik! Iltimos qayta urinib ko'ring");

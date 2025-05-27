@@ -9,7 +9,7 @@ function BannerRemove() {
     const fetchDataGet = async () => {
         setLoading(true);
         try {
-            const res = await axios.get(`https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Banners/GetAll`);
+            const res = await axios.get(`http://165.232.87.222:5000/api/Banners/GetAll`);
             setBanners(res.data);
         } catch (error) {
             setError("Ma'lumotlarni olishda xatolik yuz berdi.");
@@ -27,7 +27,7 @@ function BannerRemove() {
         if (!confirmDelete || !id) return;
 
         try {
-            await axios.delete(`https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Banners/Delete/${id}`);
+            await axios.delete(`http://165.232.87.222:5000/api/Banners/Delete/${id}`);
             alert("Banner o'chirildi!");
             fetchDataGet();
         } catch (err) {
@@ -51,7 +51,7 @@ function BannerRemove() {
             {banners && banners.map(banner => (
                 <div key={banner.id} className="bg-white rounded-lg shadow-lg overflow-hidden mb-6">
                     <img
-                        src={`https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/${banner.images?.split(';')[0]}`}
+                        src={`http://165.232.87.222:5000/${banner.images?.split(';')[0]}`}
                         alt="Banner rasmi"
                         className="w-full h-64 object-cover"
                     />

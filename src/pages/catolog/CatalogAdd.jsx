@@ -28,7 +28,7 @@ function CatalogAdd() {
         setErrorMessage("");
 
         try {
-            await axios.post('https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Catalogs/Insert', dataToSend);
+            await axios.post('http://165.232.87.222:5000/api/Catalogs/Insert', dataToSend);
 
             alert('Katalog muvaffaqiyatli qo‘shildi!');
 

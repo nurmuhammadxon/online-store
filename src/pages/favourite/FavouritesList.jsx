@@ -25,7 +25,7 @@ function FavouritesList() {
     const fetchProducts = async (productIds) => {
         try {
             const response = await axios.get(
-                'https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Products/GetAllProducts',
+                'http://165.232.87.222:5000/api/Products/GetAllProducts',
                 {
                     params: {
                         sort: false,

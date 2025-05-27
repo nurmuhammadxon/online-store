@@ -10,7 +10,7 @@ const UsersList = () => {
         setLoading(true);
         setError("");
         try {
-            const res = await axios.get("https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Users/GetAll");
+            const res = await axios.get("http://165.232.87.222:5000/api/Users/GetAll");
             const filtered = res.data.data.users.filter(user => user.role !== 0);
             setUsers(filtered || []);
 

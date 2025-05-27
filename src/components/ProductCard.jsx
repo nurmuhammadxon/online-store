@@ -20,7 +20,7 @@ function ProductCard({ data }) {
         const fetchFavourites = async () => {
             try {
                 const response = await axios.get(
-                    'https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Favourites/GetAll',
+                    'http://165.232.87.222:5000/api/Favourites/GetAll',
                 );
                 const favourites = response.data.data.favourites;
                 const favouriteItem = favourites.find(fav => fav.productId === data.id);
@@ -62,7 +62,7 @@ function ProductCard({ data }) {
         try {
             if (newLikeStatus) {
                 await axios.post(
-                    'https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Favourites/AddFavourite/add',
+                    'http://165.232.87.222:5000/api/Favourites/AddFavourite/add',
                     {
                         userId: userId,
                         productId: data.id,
@@ -75,7 +75,7 @@ function ProductCard({ data }) {
                 );
             } else {
                 await axios.delete(
-                    `https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Favourites/RemoveFavourite/remove/${favouriteId}`,
+                    `http://165.232.87.222:5000/api/Favourites/RemoveFavourite/remove/${favouriteId}`,
                     {
                         params: {
                             token: true,
@@ -83,7 +83,7 @@ function ProductCard({ data }) {
                     }
                 );
             }
-            
+
         } catch (error) {
             console.error('Xatolik:', error);
         }
@@ -97,7 +97,7 @@ function ProductCard({ data }) {
 
         try {
             await axios.post(
-                'https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/CartItems/AddCart/add-cart',
+                'http://165.232.87.222:5000/api/CartItems/AddCart/add-cart',
                 {
                     userId: userId,
                     productId: productId,
@@ -128,7 +128,7 @@ function ProductCard({ data }) {
             <div className="relative pt-3.5 group">
                 <div onClick={() => navigate(`/products/${data.id}`)}>
                     <img
-                        src={`https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/${data.images.split(';')[0]}`}
+                        src={`http://165.232.87.222:5000/${data.images.split(';')[0]}`}
                         alt={`${data.productName} image`}
                         className="mt-2.5 w-full h-auto group-hover:scale-105 transition-transform duration-200"
                     />

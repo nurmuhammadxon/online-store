@@ -63,7 +63,7 @@ function ProductUpdate() {
             }
 
             await axios.put(
-                `https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Products/Modify/${selectedProduct.id}`,
+                `http://165.232.87.222:5000/api/Products/Modify/${selectedProduct.id}`,
                 formData,
                 {
                     headers: {

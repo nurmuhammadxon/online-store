@@ -7,7 +7,7 @@ function BannerList() {
     useEffect(() => {
         const fetchDataGet = async () => {
             try {
-                const res = await axios.get(`https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Banners/GetAll`);
+                const res = await axios.get(`http://165.232.87.222:5000/api/Banners/GetAll`);
                 setBanners(res.data);
             } catch (error) {
                 console.log(error);
@@ -23,7 +23,7 @@ function BannerList() {
                 return (
                     <div key={banner.id} className="rounded-xl shadow-md overflow-hidden bg-white">
                         <img
-                            src={`https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/${banner.images.split(';')[0]}`}
+                            src={`http://165.232.87.222:5000/${banner.images.split(';')[0]}`}
                             alt={`Banner ${banner.id}`}
                             className="w-full h-52"
                         />

@@ -24,7 +24,7 @@ const AdminUpdate = () => {
         setLoading(true);
         setError("");
         try {
-            const response = await axios.get("https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Users/GetAll");
+            const response = await axios.get("http://165.232.87.222:5000/api/Users/GetAll");
             const users = response.data.data.users.filter(user => user.role === 0 && user.userName !== 'superadmin');
             setUsers(users || []);
         } catch (err) {
@@ -63,7 +63,7 @@ const AdminUpdate = () => {
     const updateUser = async () => {
         try {
             await axios.put(
-                `https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Users/Update/${value.id}`,
+                `http://165.232.87.222:5000/api/Users/Update/${value.id}`,
                 value,
                 { headers: { "Content-Type": "application/json" } }
             );

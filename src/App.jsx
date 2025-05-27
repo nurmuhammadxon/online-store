@@ -2,7 +2,7 @@ import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 // components 
-import { ProductDetail, ProductsAll } from './components';
+import { ProductDetail, ProductsAll, ProductSearch } from './components';
 
 // Layouts
 import MainLayout from './layouts/MainLayout';
@@ -82,6 +82,10 @@ function App() {
         {
           index: true,
           element: <HomePage />
+        },
+        {
+          path: 'serach-product',
+          element: <ProductSearch />
         },
         // user about
         {

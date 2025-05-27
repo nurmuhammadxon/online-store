@@ -41,7 +41,7 @@ function CatalogUpdate() {
 
     const updateCatalog = async (id) => {
         try {
-            await axios.put(`https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Catalogs/Update/${id}`, formData);
+            await axios.put(`http://165.232.87.222:5000/api/Catalogs/Update/${id}`, formData);
             closeModal();
         } catch (error) {
             console.error('Yangilashda xatolik:', error);

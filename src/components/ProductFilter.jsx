@@ -19,8 +19,6 @@ function Option({ label, link }) {
 function ProductFilter() {
     const [categories, setCategories] = useState([]);
     const [brands, setBrands] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState(null);
-    const [selectedBrand, setSelectedBrand] = useState(null);
     const [isCategoriesVisible, setIsCategoriesVisible] = useState(true);
     const [isBrandsVisible, setIsBrandsVisible] = useState(true);
 

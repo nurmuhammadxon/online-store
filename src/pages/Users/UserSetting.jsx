@@ -17,7 +17,7 @@ function UserSetting() {
     const fetchUser = async () => {
       try {
         const userId = JSON.parse(sessionStorage.getItem('user')).id;
-        const response = await axios.get(`https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Users/GetById/${userId}`);
+        const response = await axios.get(`http://165.232.87.222:5000/api/Users/GetById/${userId}`);
         setUser(response.data.data);
       } catch (error) {
         console.error("Foydalanuvchi ma'lumotlarini olishda xatolik:", error);

@@ -32,7 +32,7 @@ function SignUp() {
 
     try {
       const insertRes = await axios.post(
-        'https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Users/Insert',
+        'http://165.232.87.222:5000/api/Users/Insert',
         {
           userName: value.userName,
           firstName: value.firstName,

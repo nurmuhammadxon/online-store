@@ -1,66 +1,59 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { FaSearch } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { ProductSearch } from '.';
 
-function Serach({ onSearch }) {
+function Search() {
     const [input, setInput] = useState('');
-    const [categories, setCategories] = useState([]);
-    const [showSuggestions, setShowSuggestions] = useState(false);
-
     const navigate = useNavigate();
+    const [searchData, setSearchData] = useState([]);
 
-    const handleSearch = async () => {
+    const handleSearch = async (e) => {
+        e.preventDefault();
         if (input.trim() === '') return;
 
         try {
             const response = await axios.get(
-                `https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Products/SearchProducts/search?searchTerm=${input}`
+                `http://165.232.87.222:5000/api/Products/SearchProducts/search?searchTerm=${input}`
             );
-            const categoryList = response.data.categories || [];
-            setCategories(categoryList);
-            onSearch(input);
-            setShowSuggestions(true);
+
+            setSearchData(response.data);
+
+            navigate('/search-product', { state: { searchData: response.data } });
         } catch (error) {
             console.error('Qidiruvda xatolik:', error);
+            alert("Qidiruvda xatolik yuz berdi.");
         }
     };
 
     return (
-        <div className='hidden w-full max-w-xs md:block sm:max-w-sm md:max-w-md lg:max-w-lg'>
-            <form action="" className='w-full'>
-                <label className='flex items-center justify-between pl-2 border rounded-full focus-within:shadow'>
-                    <input
-                        type="search"
-                        placeholder='Search'
-                        className='w-full outline-none pl-3.5'
-                        value={input}
-                        onChange={(e) => setInput(e.target.value)}
-                    />
-                    <span
-                        className='text-lg min-w-[50px] h-8 flex items-center justify-center rounded-r-full text-white bg-primary'
-                        onClick={handleSearch}
-                    >
-                        <FaSearch />
-                    </span>
-                </label>
-            </form>
-
-            {/* Kategoriyalarni ko'rsatish */}
-            {showSuggestions && categories.length > 0 && (
-                <div className="mt-2 bg-white border rounded-md shadow-lg absolute z-10 w-full max-h-60 overflow-y-auto">
-                    {categories.map((category, index) => (
+        <>
+            <div className='hidden w-full max-w-xs md:block sm:max-w-sm md:max-w-md lg:max-w-lg'>
+                <form onSubmit={handleSearch}>
+                    <label className='flex items-center justify-between pl-2 border rounded-full focus-within:shadow'>
+                        <input
+                            type="search"
+                            placeholder='Search'
+                            className='w-full outline-none pl-3.5'
+                            value={input}
+                            onChange={(e) => setInput(e.target.value)}
+                        />
                         <button
-                            key={index}
-                            className="w-full text-left px-4 py-2 hover:bg-gray-100"
-                            onClick={() => navigate(`/category/${category.id}`)} // Kategoriya sahifasiga o'tish
+                            type="submit"
+                            className='text-lg min-w-[50px] h-8 flex items-center justify-center rounded-r-full text-white bg-primary'
+                            onClick={(e) => handleSearch(e)}
                         >
-                            {category.name}
+                            <FaSearch />
                         </button>
-                    ))}
-                </div>
-            )}
-        </div>)
+                    </label>
+                </form>
+            </div>
+            <div className='hidden'>
+                <ProductSearch data={searchData} />
+            </div>
+        </>
+    );
 }
 
-export default Serach
+export default Search;

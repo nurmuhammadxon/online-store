@@ -43,7 +43,7 @@ function CategoryUpdate() {
 
     const updateCategory = async () => {
         try {
-            await axios.put(`https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Categories/Update/${formData.id}`, formData);
+            await axios.put(`http://165.232.87.222:5000/api/Categories/Update/${formData.id}`, formData);
             fetchCategories()
             closeModal();
         } catch (error) {

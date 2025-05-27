@@ -28,7 +28,7 @@ function BrendAdd() {
         setErrorMessage("");
 
         try {
-            await axios.post('https://techstationapi-epe0ggbffchncbbc.canadacentral-01.azurewebsites.net/api/Brends/Add', dataToSend);
+            await axios.post('http://165.232.87.222:5000/api/Brends/Add', dataToSend);
             alert('Brend muvaffaqiyatli qo‘shildi!');
         } catch (error) {
             console.error('Xatolik:', error);
