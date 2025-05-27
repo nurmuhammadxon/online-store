@@ -51,7 +51,7 @@ function SignIn() {
                 // role
                 if (foundUser) {
                     const role = foundUser.role === 1
-                        ? (foundUser.userName === 'superadmin' || "superAdmin" ? 'superAdmin' : 'admin')
+                        ? (foundUser.userName === 'superadmin' || foundUser.userName === "superAdmin" ? 'superAdmin' : 'admin')
                         : 'user';
 
                     sessionStorage.setItem('auth', true);
