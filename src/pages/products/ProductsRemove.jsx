@@ -23,7 +23,7 @@ function ProductsRemove() {
         if (!confirmDelete) return;
 
         try {
-            await axios.delete(`http://165.232.87.222:5000/api/Products/Remove/${id}`);
+            await axios.delete(`https://165.232.87.222/api/Products/Remove/${id}`);
             alert("Mahsulot o'chirildi!");
         } catch (err) {
             setError("O'chirishda xatolik! Iltimos qayta urinib ko'ring");

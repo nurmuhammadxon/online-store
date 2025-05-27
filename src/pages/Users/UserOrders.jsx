@@ -24,7 +24,7 @@ function Orders() {
     const fetchProducts = async (productIds) => {
         try {
             const response = await axios.get(
-                'http://165.232.87.222:5000/api/Products/GetAllProducts',
+                'https://165.232.87.222/api/Products/GetAllProducts',
                 {
                     params: {
                         sort: false,
@@ -51,7 +51,7 @@ function Orders() {
 
         // try {
         //     await axios.delete(
-        //         `http://165.232.87.222:5000/api/Orders/Remove/${id}`,
+        //         `https://165.232.87.222/api/Orders/Remove/${id}`,
         //     );
         //     setOrders(prev => prev.filter(o => o.id !== id));
         //     setModalMessage('Buyurtmani o\'chirildi');
@@ -85,7 +85,7 @@ function Orders() {
                         <div key={order.id} className="flex items-center justify-between p-4 mb-4 bg-white rounded-lg shadow-md hover:shadow-xl">
                             <div className="flex items-center gap-4">
                                 <img
-                                    src={`http://165.232.87.222:5000/${product.images?.split(';')[0]}`}
+                                    src={`https://165.232.87.222/${product.images?.split(';')[0]}`}
                                     alt={product.productName}
                                     className="object-cover w-20 h-20 rounded-md"
                                 />

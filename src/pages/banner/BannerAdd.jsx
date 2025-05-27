@@ -35,7 +35,7 @@ function BannerAdd() {
         formData.append('CategoryId', categoryId);
 
         try {
-            const res = await axios.post('http://165.232.87.222:5000/api/Banners/Add', formData, {
+            const res = await axios.post('https://165.232.87.222/api/Banners/Add', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

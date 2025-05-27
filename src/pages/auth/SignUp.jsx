@@ -32,7 +32,7 @@ function SignUp() {
 
     try {
       const insertRes = await axios.post(
-        'http://165.232.87.222:5000/api/Users/Insert',
+        'https://165.232.87.222/api/Users/Insert',
         {
           userName: value.userName,
           firstName: value.firstName,

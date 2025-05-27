@@ -23,7 +23,7 @@ function CategoryRemove() {
         if (!confirmDelete) return;
 
         try {
-            await axios.delete(`http://165.232.87.222:5000/api/Categories/Detele/${id}`);
+            await axios.delete(`https://165.232.87.222/api/Categories/Detele/${id}`);
             alert("Kategoriya o'chirildi!");
         } catch (err) {
             setError("O'chirishda xatolik! Iltimos qayta urinib ko'ring");

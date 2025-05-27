@@ -11,7 +11,7 @@ const AdminRemove = () => {
         setError("");
 
         try {
-            const response = await axios.get("http://165.232.87.222:5000/api/Users/GetAll");
+            const response = await axios.get("https://165.232.87.222/api/Users/GetAll");
             const users = response.data.data.users.filter(user => user.role === 0);
             setUsers(users || [])
         } catch (err) {
@@ -33,7 +33,7 @@ const AdminRemove = () => {
         if (!confirmDelete) return;
 
         try {
-            await axios.delete(`http://165.232.87.222:5000/api/Users/Delete/${id}`);
+            await axios.delete(`https://165.232.87.222/api/Users/Delete/${id}`);
             fetchUsers()
         } catch (err) {
             setError("O'chirishda xatolik: ");

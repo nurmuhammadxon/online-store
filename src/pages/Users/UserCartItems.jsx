@@ -26,7 +26,7 @@ function UserCartItems() {
     const fetchProducts = async (productIds) => {
         try {
             const response = await axios.get(
-                `http://165.232.87.222:5000/api/Products/GetAllProducts`,
+                `https://165.232.87.222/api/Products/GetAllProducts`,
                 {
                     params: {
                         sort: false,
@@ -57,7 +57,7 @@ function UserCartItems() {
     const handleRemoveItem = async (id) => {
         try {
             await axios.delete(
-                `http://165.232.87.222:5000/api/CartItems/RemoveCartItem/remove/${id}`,
+                `https://165.232.87.222/api/CartItems/RemoveCartItem/remove/${id}`,
                 {
                     params: {
                         token: true
@@ -79,7 +79,7 @@ function UserCartItems() {
     const handleRemoveAll = async () => {
         try {
             await axios.delete(
-                'http://165.232.87.222:5000/api/CartItems/ClearAllCartItems/clear',
+                'https://165.232.87.222/api/CartItems/ClearAllCartItems/clear',
                 {
                     params: { clear: true }
                 }
@@ -104,7 +104,7 @@ function UserCartItems() {
 
         try {
             await axios.post(
-                'http://165.232.87.222:5000/api/Orders/Add',
+                'https://165.232.87.222/api/Orders/Add',
                 order
             );
 
@@ -147,7 +147,7 @@ function UserCartItems() {
                         >
                             <div className="flex items-start gap-6 w-full lg:w-2/3">
                                 <img
-                                    src={`http://165.232.87.222:5000/${product.images.split(';')[0]
+                                    src={`https://165.232.87.222/${product.images.split(';')[0]
                                         }`}
                                     alt={`${product.productName} image`}
                                     className="object-cover w-24 h-24 rounded-md shadow-md"

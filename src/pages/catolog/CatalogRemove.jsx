@@ -23,7 +23,7 @@ function CatalogRemove() {
         if (!confirmDelete) return;
 
         try {
-            await axios.delete(`http://165.232.87.222:5000/api/Catalogs/Delete/${id}`);
+            await axios.delete(`https://165.232.87.222/api/Catalogs/Delete/${id}`);
             alert("Katalog o'chirildi!");
         } catch (err) {
             setError("O'chirishda xatolik! Iltimos qayta urinib ko'ring");

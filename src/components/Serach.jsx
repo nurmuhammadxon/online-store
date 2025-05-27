@@ -15,7 +15,7 @@ function Search() {
 
         try {
             const response = await axios.get(
-                `http://165.232.87.222:5000/api/Products/SearchProducts/search?searchTerm=${input}`
+                `https://165.232.87.222/api/Products/SearchProducts/search?searchTerm=${input}`
             );
 
             setSearchData(response.data);

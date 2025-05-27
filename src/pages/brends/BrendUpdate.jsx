@@ -44,7 +44,7 @@ function BrendUpdate() {
 
     const updatebrendalog = async (id) => {
         try {
-            await axios.put(`http://165.232.87.222:5000/api/Brends/Modify/${id}`, formData);
+            await axios.put(`https://165.232.87.222/api/Brends/Modify/${id}`, formData);
             closeModal();
         } catch (error) {
             console.error('Yangilashda xatolik:', error);

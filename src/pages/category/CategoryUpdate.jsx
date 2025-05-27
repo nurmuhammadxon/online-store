@@ -43,7 +43,7 @@ function CategoryUpdate() {
 
     const updateCategory = async () => {
         try {
-            await axios.put(`http://165.232.87.222:5000/api/Categories/Update/${formData.id}`, formData);
+            await axios.put(`https://165.232.87.222/api/Categories/Update/${formData.id}`, formData);
             fetchCategories()
             closeModal();
         } catch (error) {

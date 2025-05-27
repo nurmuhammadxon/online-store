@@ -25,7 +25,7 @@ function FavouritesList() {
     const fetchProducts = async (productIds) => {
         try {
             const response = await axios.get(
-                'http://165.232.87.222:5000/api/Products/GetAllProducts',
+                'https://165.232.87.222/api/Products/GetAllProducts',
                 {
                     params: {
                         sort: false,

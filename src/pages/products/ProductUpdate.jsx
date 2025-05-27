@@ -63,7 +63,7 @@ function ProductUpdate() {
             }
 
             await axios.put(
-                `http://165.232.87.222:5000/api/Products/Modify/${selectedProduct.id}`,
+                `https://165.232.87.222/api/Products/Modify/${selectedProduct.id}`,
                 formData,
                 {
                     headers: {

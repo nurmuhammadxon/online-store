@@ -27,7 +27,7 @@ function OrdersList() {
 
     const fetchProducts = async (productIds) => {
         try {
-            const res = await axios.get('http://165.232.87.222:5000/api/Products/GetAllProducts', {
+            const res = await axios.get('https://165.232.87.222/api/Products/GetAllProducts', {
                 params: {
                     ids: productIds.join(','),
                     sort: false
@@ -41,7 +41,7 @@ function OrdersList() {
 
     const fetchUsers = async (userIds) => {
         try {
-            const res = await axios.get('http://165.232.87.222:5000/api/Users/GetAll', {
+            const res = await axios.get('https://165.232.87.222/api/Users/GetAll', {
                 params: {
                     ids: userIds.join(',')
                 }

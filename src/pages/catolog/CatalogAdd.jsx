@@ -28,7 +28,7 @@ function CatalogAdd() {
         setErrorMessage("");
 
         try {
-            await axios.post('http://165.232.87.222:5000/api/Catalogs/Insert', dataToSend);
+            await axios.post('https://165.232.87.222/api/Catalogs/Insert', dataToSend);
 
             alert('Katalog muvaffaqiyatli qo‘shildi!');
 

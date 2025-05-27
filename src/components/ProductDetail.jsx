@@ -61,7 +61,7 @@ function ProductDetail() {
                                     }`}
                             >
                                 <img
-                                    src={`http://165.232.87.222:5000/${image}`}
+                                    src={`https://165.232.87.222/${image}`}
                                     alt={`Rasm ${index + 1}`}
                                     className="rounded-md object-cover w-full h-full"
                                 />
@@ -77,7 +77,7 @@ function ProductDetail() {
                     {mainImage ? (
                         <img
                             className="rounded-lg shadow-xl transition-transform hover:scale-105 w-full max-w-full max-h-[400px] sm:max-h-[500px] object-contain"
-                            src={`http://165.232.87.222:5000/${mainImage}`}
+                            src={`https://165.232.87.222/${mainImage}`}
                             alt="Asosiy mahsulot rasmi"
                         />
                     ) : (

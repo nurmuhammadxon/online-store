@@ -24,7 +24,7 @@ const UsersUpdate = () => {
         setLoading(true);
         setError("");
         try {
-            const response = await axios.get("http://165.232.87.222:5000/api/Users/GetAll");
+            const response = await axios.get("https://165.232.87.222/api/Users/GetAll");
             const users = response.data.data.users.filter(user => user.role !== 0);
             setUsers(users || []);
         } catch (err) {
@@ -63,7 +63,7 @@ const UsersUpdate = () => {
     const updateUser = async () => {
         try {
             await axios.put(
-                `http://165.232.87.222:5000/api/Users/Update/${value.id}`,
+                `https://165.232.87.222/api/Users/Update/${value.id}`,
                 value,
                 { headers: { "Content-Type": "application/json" } }
             );
