@@ -7,7 +7,7 @@ function ProductsRemove() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
+    const fetGetData = () => {
         fetchData(
             'Products/GetAllProducts?sort=false',
             'products',
@@ -15,6 +15,10 @@ function ProductsRemove() {
             setError,
             setLoading
         )
+    }
+
+    useEffect(() => {
+        fetGetData()
     }, []);
 
     const deleteProduct = async (id) => {
@@ -27,6 +31,8 @@ function ProductsRemove() {
             alert("Mahsulot o'chirildi!");
         } catch (err) {
             setError("O'chirishda xatolik! Iltimos qayta urinib ko'ring");
+        } finally {
+            fetGetData()
         }
     };
 

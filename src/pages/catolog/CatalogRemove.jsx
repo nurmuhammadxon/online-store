@@ -7,7 +7,7 @@ function CatalogRemove() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
-    useEffect(() => {
+    const fetGetData = () => {
         fetchData(
             'Catalogs/GetAll',
             'catalogs',
@@ -15,6 +15,10 @@ function CatalogRemove() {
             setError,
             setLoading
         )
+    }
+
+    useEffect(() => {
+        fetGetData()
     }, []);
 
     const deleteCatalog = async (id) => {
@@ -27,6 +31,8 @@ function CatalogRemove() {
             alert("Katalog o'chirildi!");
         } catch (err) {
             setError("O'chirishda xatolik! Iltimos qayta urinib ko'ring");
+        } finally {
+            fetGetData()
         }
     };
 

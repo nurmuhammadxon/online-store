@@ -7,7 +7,7 @@ function CategoryRemove() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
-    useEffect(() => {
+    const fetGetData = () => {
         fetchData(
             'Categories/GetAll',
             'categories',
@@ -15,6 +15,10 @@ function CategoryRemove() {
             setError,
             setLoading
         )
+    }
+
+    useEffect(() => {
+        fetGetData()
     }, []);
 
     const deleteCategory = async (id) => {
@@ -27,6 +31,8 @@ function CategoryRemove() {
             alert("Kategoriya o'chirildi!");
         } catch (err) {
             setError("O'chirishda xatolik! Iltimos qayta urinib ko'ring");
+        } finally {
+            fetGetData()
         }
     };
 

@@ -29,9 +29,10 @@ function BannerRemove() {
         try {
             await axios.delete(`https://165.232.87.222/api/Banners/Delete/${id}`);
             alert("Banner o'chirildi!");
-            fetchDataGet();
         } catch (err) {
             setError("O'chirishda xatolik! Iltimos qayta urinib ko'ring.");
+        } finally {
+            fetchDataGet();
         }
     };
 

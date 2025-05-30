@@ -7,7 +7,7 @@ function BrendRemove() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
-    useEffect(() => {
+    const fetGetData = () => {
         fetchData(
             'Brends/GetAll',
             'brands',
@@ -15,6 +15,10 @@ function BrendRemove() {
             setError,
             setLoading
         )
+    }
+
+    useEffect(() => {
+        fetGetData()
     }, []);
 
     const deleteBrend = async (id) => {
@@ -27,6 +31,8 @@ function BrendRemove() {
             alert("Brend o'chirildi!");
         } catch (err) {
             setError("O'chirishda xatolik! Iltimos qayta urinib ko'ring");
+        } finally {
+            fetGetData()
         }
     };
 
