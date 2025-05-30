@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { defaultDataBanner } from '../util/Constants'
 
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -9,7 +10,6 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-
 function Banner() {
     const [banners, setBanners] = useState([])
 
@@ -17,7 +17,13 @@ function Banner() {
         const fetchDataGet = async () => {
             try {
                 const res = await axios.get(`https://165.232.87.222/api/Banners/GetAll`);
-                setBanners(res.data);
+                const data = res.data
+
+                if (Array.isArray(data) && data.length === 0) {
+                    setBanners(defaultDataBanner)
+                } else {
+                    setBanners(data);
+                }
             } catch (error) {
                 console.log(error);
             }

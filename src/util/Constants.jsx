@@ -380,3 +380,9 @@ export const usernav = [
         key: 'settings',
     },
 ];
+
+export const defaultDataBanner = [
+    {
+        images: 'https://images.uzum.uz/d07mq6lpb7f46s88q100/main_page_banner.jpg'       
+    }
+]
